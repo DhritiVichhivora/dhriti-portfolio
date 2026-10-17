@@ -121,7 +121,7 @@ html:not(.js) .curtain{display:none}
   border-bottom:1px solid var(--rose);transition:opacity .3s;
 }
 .nav.scrolled{color:var(--ink)}
-.nav.scrolled::before{opacity:.86;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.nav.scrolled::before{opacity:.94;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .nav.menu-open{color:var(--ivory)}
 .nav.menu-open::before{opacity:0}
 .nav-in{position:relative;height:100%;display:flex;align-items:center;justify-content:space-between}
@@ -374,9 +374,9 @@ html:not(.js) .curtain{display:none}
 .card-back{position:absolute;inset:6% 4% 8%;border-radius:10px;box-shadow:var(--shadow)}
 .card-rose{background:var(--rose);transform:rotate(7deg) translate(6%,2%)}
 .card-burg{background:var(--burgundy);transform:rotate(-11deg) translate(-7%,4%)}
-.card-back .pill-stk{position:absolute;font-size:14px}
-.card-rose .pill-stk{right:-6%;top:12%;background:var(--ivory);color:var(--burgundy);transform:rotate(12deg)}
-.card-burg .pill-stk{left:-8%;bottom:14%;background:var(--ink);color:var(--ivory);transform:rotate(-8deg)}
+.stack .st-1,.stack .st-2{position:absolute;z-index:2;font-size:14px}
+.stack .st-1{right:-7%;top:7%;background:var(--rose);color:var(--ink);transform:rotate(10deg)}
+.stack .st-2{left:-7%;bottom:24%;background:var(--ink);color:var(--ivory);transform:rotate(-8deg)}
 .polaroid{
   position:absolute;inset:0;margin:0;background:#FBF8F4;padding:4.5% 4.5% 17%;border-radius:6px;
   box-shadow:0 22px 40px rgba(20,8,12,.28);transform:rotate(-4deg);
@@ -467,17 +467,20 @@ html:not(.js) .curtain{display:none}
 .bar:last-child::after{left:auto;right:0;transform:none}
 
 /* CPI line chart */
+/* CPI chart sits on ivory so the line can be burgundy, as in the brief */
+.line-viz{background:var(--ivory);color:var(--ink);border:1.5px solid var(--burgundy)}
+.line-viz .viz-tag{color:var(--burgundy)}
 .line-viz svg{width:100%;height:auto;flex:1;overflow:visible;touch-action:pan-y}
-.lv-grid{stroke:var(--rose);stroke-width:.5;opacity:.45}
+.lv-grid{stroke:var(--rose);stroke-width:1}
 .lv-area{fill:var(--rose);opacity:0;transition:opacity .8s}
-.lv-line{fill:none;stroke:var(--ivory);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.lv-target{stroke:var(--rose);stroke-width:1.2;stroke-dasharray:5 5}
-.lv-txt{font:10px var(--font-mono);fill:var(--rose)}
+.lv-line{fill:none;stroke:var(--burgundy);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.lv-target{stroke:var(--burgundy);stroke-width:1.2;stroke-dasharray:5 5}
+.lv-txt{font:10px var(--font-mono);fill:var(--burgundy)}
 .lv-dot{fill:var(--hot)}
-.lv-guide{stroke:var(--ivory);stroke-width:1;opacity:0}
+.lv-guide{stroke:var(--ink);stroke-width:1;opacity:0}
 .lv-tip{opacity:0;pointer-events:none}
-.lv-tip rect{fill:var(--ivory)}
-.lv-tip text{font:10px var(--font-mono);fill:var(--ink)}
+.lv-tip rect{fill:var(--ink)}
+.lv-tip text{font:10px var(--font-mono);fill:var(--ivory)}
 .line-viz.drawn .lv-area{opacity:.3}
 .line-viz.hovering .lv-guide,.line-viz.hovering .lv-tip{opacity:1}
 
@@ -641,8 +644,11 @@ html:not(.js) .curtain{display:none}
 }
 /* Very short screens (landscape phones): keep the cover compact */
 @media (max-height:500px){
-  .s-cover{padding-top:calc(var(--nav-h) + 4px)}
-  .cover-main{padding:8px 0 0}
+  .s-cover{padding-top:calc(var(--nav-h) - 6px)}
+  .cover-issue{display:none}
+  .cover-main{padding:4px 0 0}
+  .nm-1{font-size:min(23vw,37vh)}
+  .nm-2{font-size:min(12.2vw,19vh)}
   .badge{display:none}
   .cover-foot{margin-top:12px}
 }

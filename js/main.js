@@ -159,12 +159,14 @@
         '</div>' +
         '<div class="about-photo" data-reveal data-delay="150">' +
           '<div class="stack" data-tilt="8"><div class="stack-in"><div class="stack-float amb">' +
-            '<div class="card-back card-burg" aria-hidden="true"><span class="pill-stk">' + esc(a.stickers[1]) + '</span></div>' +
-            '<div class="card-back card-rose" aria-hidden="true"><span class="pill-stk">' + esc(a.stickers[0]) + '</span></div>' +
+            '<div class="card-back card-burg" aria-hidden="true"></div>' +
+            '<div class="card-back card-rose" aria-hidden="true"></div>' +
             '<figure class="polaroid"><span class="tape" aria-hidden="true"></span>' +
               '<div class="ph"><img src="' + esc(p.photo) + '" alt="' + esc(p.photoAlt) + '" width="800" height="1000" loading="lazy" decoding="async">' +
               '<span class="ph-fallback" aria-hidden="true">' + esc(p.monogram) + '</span></div>' +
               '<figcaption>' + esc(a.caption) + '</figcaption></figure>' +
+            '<span class="pill-stk st-1" aria-hidden="true">' + esc(a.stickers[0]) + '</span>' +
+            '<span class="pill-stk st-2" aria-hidden="true">' + esc(a.stickers[1]) + '</span>' +
           '</div></div></div>' +
         '</div>' +
       '</div></div></section>';
@@ -552,9 +554,7 @@
       var y = window.scrollY || window.pageYOffset;
       var p = max > 0 ? clamp(y / max, 0, 1) : 0;
       var id = currentId();
-      var contact = doc.getElementById('contact');
-      var ended = (max > 0 && y >= max - 4) ||
-        (id === 'contact' && contact && contact.getBoundingClientRect().top <= window.innerHeight * 0.15);
+      var ended = max > 0 && y >= max - 4;     /* the last track ends at the bottom of the page */
       if (ended) p = 1;
       state.ended = ended;
 
@@ -573,7 +573,13 @@
 
       if (id !== state.current) { state.current = id; emit('dv:section', id); }
     }
-    function request() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    /* One update per frame; the timer covers background tabs where frames pause */
+    function request() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { if (ticking) update(); });
+      setTimeout(function () { if (ticking) update(); }, 150);
+    }
     window.addEventListener('scroll', request, { passive: true });
     window.addEventListener('resize', request);
     doc.addEventListener('dv:refresh', request);
