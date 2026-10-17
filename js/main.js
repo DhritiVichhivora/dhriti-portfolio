@@ -260,7 +260,7 @@
     if (!r) return '';
     function item(e) {
       return '<article class="rec-item" data-reveal><p class="rec-when">' + esc(e.when) + '</p><div>' +
-        '<h4 class="rec-role">' + esc(e.role) + '</h4><p class="rec-org">' + esc(e.org) + '</p>' +
+        '<h4 class="rec-role">' + esc(e.role) + '</h4>' + (e.org ? '<p class="rec-org">' + esc(e.org) + '</p>' : '') +
         (e.points ? '<ul class="rec-points">' + e.points.map(function (pt) { return '<li>' + esc(pt) + '</li>'; }).join('') + '</ul>' : '') +
         '</div></article>';
     }

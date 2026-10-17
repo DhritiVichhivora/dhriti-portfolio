@@ -219,7 +219,12 @@ window.SITE = {
       {
         when: '2022 – 2028',
         role: 'B.Tech in Data Science',
-        org: 'Six-year integrated programme · NMIMS Mumbai'
+        org: 'NMIMS Mumbai · six-year integrated programme'
+      },
+      {
+        when: 'School',
+        role: 'Shishuvan High School',
+        org: ''
       }
     ],
     certsLabel: 'Certifications',
