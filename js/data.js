@@ -12,19 +12,10 @@ window.SITE = {
     last: 'VICHHIVORA',
     monogram: 'DV',
     tagline: 'Figuring it out. Building it anyway.',
-    issue: 'Issue 01 · 2026',
-    playlist: 'Issue 01',
-    folio: ['Issue 01 · 2026', 'Data Science · AI · Analytics', 'Mumbai'],
-    role: 'Data Science student',
-    intro: 'Data Science student at NMIMS Mumbai and Data Science intern at Logixal, summer 2026. Currently exploring AI, machine learning and GenAI.',
-    tocTitle: 'Inside: 4 projects, 1 debate stage, 1 new language.',
-    toc: [
-      { id: 'about', label: 'Who is Dhriti?' },
-      { id: 'work', label: 'Selected work, 4 tracks' },
-      { id: 'skills', label: 'The toolkit' },
-      { id: 'beyond', label: 'Bonus tracks' },
-      { id: 'contact', label: 'Say hi' }
-    ],
+    foodLine: 'Powered by data and good food.',
+    playlist: 'Portfolio 2026',
+    folio: ['Portfolio 2026', 'Data Science · AI · Analytics', 'Mumbai'],
+    intro: 'Data Science student at NMIMS Mumbai and Data Science intern at Logixal, summer 2026. Exploring AI, machine learning and LLMs.',
     photo: 'assets/photo.jpg',
     photoSmall: 'assets/photo-small.jpg',
     photoAlt: 'Portrait of Dhriti Vichhivora'
@@ -34,8 +25,9 @@ window.SITE = {
   tracks: {
     top: 'Cover',
     about: 'Who is Dhriti?',
-    work: 'Tracklist',
-    skills: 'Toolkit',
+    work: 'Projects',
+    record: 'On the record',
+    skills: 'The record crate',
     beyond: 'Bonus tracks',
     contact: 'Say hi',
     ended: 'Track ended',
@@ -45,7 +37,8 @@ window.SITE = {
   /* --- Navigation links (id = section id) --- */
   nav: [
     { id: 'about', label: 'About' },
-    { id: 'work', label: 'Work' },
+    { id: 'work', label: 'Projects' },
+    { id: 'record', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'beyond', label: 'Beyond' },
     { id: 'contact', label: 'Contact' }
@@ -58,49 +51,81 @@ window.SITE = {
     { id: 'blush', name: 'Blush' }
   ],
 
-  /* --- The outlined band between the cover and About --- */
-  band: 'A LITTLE DATA ✦ A LOT OF CURIOSITY ✦',
-
   /* --- 01 About --- */
   about: {
     label: '01 — About',
     headline: 'Who is Dhriti?',
-    squiggle: 'Dhriti',
+    underline: 'Dhriti',
+    statement: 'I like finding the story hiding inside a messy dataset.',
     paragraphs: [
-      'I’m a Data Science student who likes finding the story hiding inside a messy dataset. I’m happiest when a question I can’t answer yet turns into something I can build.',
-      'Right now I’m exploring AI, machine learning and GenAI, and how to make data look as good as it is useful. Away from the screen you’ll find me swimming laps, playing badminton, or somewhere new, talking to people I’ve just met. I also do MUN, volunteer, take part in hackathons like Smart India Hackathon, and I’m learning German (A1 so far).'
+      'I’m a Data Science student in NMIMS Mumbai’s integrated B.Tech programme, and I’m happiest when a question I can’t answer yet turns into something I can build.',
+      'Right now I’m exploring AI, machine learning and LLMs, and how to make data look as good as it is useful. Away from the screen you’ll find me swimming laps, playing badminton, or somewhere new, talking to people I’ve just met. I also do MUN, mentor children at an NGO, take part in hackathons, and I’m certified at A1 in German, now working towards A2. And I never say no to good food.'
     ],
+    caption: 'Figuring it out.',
     facts: [
-      ['Studies', 'Data Science (integrated B.Tech), NMIMS Mumbai'],
-      ['Interned at', 'Logixal (Data Science, summer 2026)'],
-      ['Exploring', 'AI, GenAI, analytics'],
-      ['Learning', 'German (A1)'],
-      ['Never says no to', 'a new place and a new conversation']
+      ['Studies', 'B.Tech Data Science (integrated), NMIMS Mumbai'],
+      ['Interned at', 'Logixal, Data Science Intern, June 2026'],
+      ['Exploring', 'AI, machine learning, LLMs, analytics'],
+      ['Learning', 'German (A2), deep learning, cloud (AWS and Azure)'],
+      ['Never says no to', 'a new place, a new conversation and good food']
     ],
-    interestsLabel: 'Off the clock',
-    interests: ['Swimming', 'Badminton', 'Travel', 'Meeting new people', 'MUN', 'German'],
-    caption: 'Figuring it out.'
+    highlightsLabel: 'Highlights',
+    highlights: [
+      { big: '2026', text: 'Data Science Intern at Logixal' },
+      { big: 'Lead', text: 'Head of the Tech department at Data Mavericks' },
+      { big: 'A1', text: 'German, certified. A2 in progress' },
+      { big: '3', text: 'IBM certifications on Coursera' }
+    ]
   },
 
-  /* --- 02 Work: the tracklist --- */
+  /* --- 02 Projects: the tracklist --- */
   work: {
-    label: '02 — Selected work',
+    label: '02 — Projects',
     headline: 'What has she built?',
     subhead: 'Tracklist · 4 tracks',
-    intro: 'A few experiments where data meets curiosity.',
-    note: 'The visuals are illustrations of each idea, not real results.',
-    blockLabels: { what: 'What it is', did: 'What I did', learned: 'What I learned', tools: 'Tools' },
-    codeLabel: 'View code',
-    demoLabel: 'Live demo',
-    soonLabel: 'Code coming soon',
+    intro: 'Four projects, from forecasting Mumbai’s air to talking to a database. Open any track for the full story.',
+    note: 'The animated visuals are illustrations of each idea, not real results.',
+    blockLabels: { origin: 'Where it started', question: 'The question', data: 'The data', built: 'What I built', learned: 'What I learned', tools: 'Tools' },
+    codeLabel: 'GitHub',
+    demoLabel: 'Live app',
     projects: [
       {
+        id: 'chatbot',
+        title: 'Database Chatbot Assistant',
+        status: 'Live',
+        summary: 'Ask a sales database a question in plain English and get the answer, a chart and a follow-up.',
+        origin: 'It started at my internship. As a Data Science Intern at Logixal I worked on a conversational analytics platform that let business teams query databases in plain English. To understand the whole pipeline, I rebuilt a scaled-down version on my own.',
+        question: 'Can someone who has never written a database query just ask a question and get a straight answer?',
+        data: 'A PostgreSQL “Superstore” retail database: 9,994 orders across three joined tables (orders, customers and returns).',
+        built: [
+          'An LLM (through Groq) turns a plain-English question into a database query. My code checks it, repairs common mistakes with dates, joins and rounding, and retries if it fails.',
+          'Conversation memory, using query rewriting and entity resolution, so a vague follow-up like “what about last quarter?” still makes sense.',
+          'A collaborative-filtering recommendation engine that suggests products from customers with similar purchases.',
+          'Sales, profit and returns forecasting with a trend-based three-month moving average.',
+          'A FastAPI backend and a live dashboard with KPIs, auto-generated charts and a Word report export.'
+        ],
+        learned: 'The model writes a decent first draft. Most of the real work is in the guardrails around it: dates, joins and follow-up questions that don’t quite say what they mean.',
+        tools: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'pandas', 'Groq LLM API', 'HTML/JS'],
+        code: 'https://github.com/DhritiVichhivora/Database-Chatbot_Assisstance',
+        demo: 'https://database-chatbot-assisstance-mf97.onrender.com/',
+        demoNote: 'it runs on a free server, so the first load can take about a minute',
+        visual: 'terminal'
+      },
+      {
         id: 'aqi',
-        title: 'Mumbai air quality',
-        summary: 'Tracking and forecasting Mumbai’s daily air quality.',
-        what: 'A live app that tracks Mumbai’s daily air quality and forecasts where it’s heading next.',
-        did: 'I cleaned six years of daily pollution-board readings (2018 to 2024), split the trend from the seasons with STL decomposition and checked stationarity with ADF and KPSS. I picked an ARIMA model by AIC across a grid of 16 setups to forecast up to 30 days ahead, then modelled how the city moves between AQI categories as a four-state Markov chain.',
-        learned: 'Mumbai’s air is at its worst from November to January. The Markov chain shows how often the city sits in each category over the long run, which says more than any single day’s reading.',
+        title: 'Mumbai Air Quality Forecasting',
+        status: 'Live',
+        summary: 'Six years of Mumbai’s air, broken into seasons and forecast 30 days ahead.',
+        question: 'How bad does Mumbai’s air get, when does it peak, and what is coming next?',
+        data: '2,431 daily AQI readings from the Central Pollution Control Board, May 2018 to December 2024.',
+        built: [
+          'STL decomposition to separate the long-term trend from the yearly pollution cycle.',
+          'Stationarity checks with ADF and KPSS tests, and ACF/PACF plots to pick model orders.',
+          'An ARIMA model chosen by AIC across a grid of 16 configurations, forecasting 7 to 30 days ahead with 95% confidence intervals.',
+          'A four-state Markov chain of AQI categories, with its long-run (stationary) distribution found through eigenvalue decomposition.',
+          'An interactive Streamlit app with a tab for each step.'
+        ],
+        learned: 'Mumbai’s air is at its worst from November to January. The Markov chain’s long-run probabilities say more about the city than any single day’s reading.',
         tools: ['Python', 'pandas', 'NumPy', 'statsmodels', 'SciPy', 'Plotly', 'Streamlit'],
         code: 'https://github.com/DhritiVichhivora/mumbai-aqi-model',
         demo: 'https://mumbai-aqi-model-8bqn4u55xhkin3ibypnrid.streamlit.app/',
@@ -108,41 +133,41 @@ window.SITE = {
       },
       {
         id: 'cpi',
-        title: 'CPI inflation',
-        summary: 'Which prices actually push India’s inflation up?',
-        what: 'A live app that asks which parts of India’s consumer price index drive headline inflation, using official CPI data from 2015 to 2025.',
-        did: 'I turned five CPI groups (food, fuel, housing, clothing and everything else) into year-on-year inflation rates and tested whether prices behaved differently before and after COVID, using hypothesis tests, ANOVA and Tukey HSD. Then I built OLS, Ridge and Lasso models to predict next month’s inflation, tuned with K-fold cross-validation.',
-        learned: 'Putting the three models side by side shows which price groups still matter once regularisation kicks in. Lasso is a quick, honest way to spot the ones that add nothing on their own.',
+        title: 'India CPI Inflation Insights',
+        status: 'Live',
+        summary: 'Which prices actually push India’s inflation up? Five price groups, three models.',
+        question: 'Which parts of the consumer price index actually drive headline inflation, and did COVID change the picture?',
+        data: '132 monthly CPI readings (2015 to 2025) from MOSPI across five groups: food and beverages, fuel and light, housing, clothing and footwear, and miscellaneous.',
+        built: [
+          'Year-on-year inflation rates for each price group.',
+          'A pre- versus post-COVID comparison using hypothesis tests, one- and two-way ANOVA and Tukey HSD.',
+          'An OLS model forecasting next month’s headline inflation, checked with VIF for multicollinearity and residual analysis.',
+          'Ridge and Lasso regression with K-fold cross-validation, plus coefficient paths, to see which groups predict inflation on their own.',
+          'An interactive Streamlit dashboard to explore it all.'
+        ],
+        learned: 'Putting OLS, Ridge and Lasso side by side shows which price groups still matter once regularisation kicks in. Lasso is a quick, honest way to spot the ones that add nothing on their own.',
         tools: ['Python', 'pandas', 'statsmodels', 'scikit-learn', 'SciPy', 'seaborn', 'Streamlit'],
         code: 'https://github.com/DhritiVichhivora/CPI-model',
-        demo: '',
+        demo: 'https://cpi-model-nvnkzcwl57282arkwxqygd.streamlit.app/',
         visual: 'line'
       },
       {
         id: 'spotify',
-        title: 'Spotify dashboard',
-        summary: 'A music dashboard, still in the studio.',
-        what: 'A dashboard built around Spotify data. It’s still being recorded, so the full write-up and the code land when it’s finished.',
-        did: '',
-        learned: '',
-        tools: [],
+        title: 'Spotify Listening Dashboard',
+        status: 'Power BI',
+        summary: 'A year of listening, broken down by artist, genre and time of day.',
+        question: 'What do listening habits look like when you line them up by artist, genre and hour?',
+        data: 'More than 12 months of listening data, prepared in Excel.',
+        built: [
+          'An interactive Power BI dashboard across artist, genre and time-of-day dimensions.',
+          'Custom KPIs and DAX measures that surface peak listening periods and behaviour trends.'
+        ],
+        learned: 'A dashboard is a story you let people read in their own order, so every visual has to earn its place.',
+        tools: ['Power BI', 'DAX', 'Excel'],
         code: '',
         demo: '',
         visual: 'eq',
-        chips: ['in progress', 'next release']
-      },
-      {
-        id: 'nl',
-        title: 'Natural language to database',
-        summary: 'Ask a sales database a question in plain English.',
-        what: 'A chat assistant that answers questions about a retail sales database in plain English, with a live dashboard on top.',
-        did: 'It started at my internship. As a Data Science intern at Logixal, I worked on a conversational analytics platform for querying databases in plain English. Afterwards I rebuilt a scaled-down version on my own with FastAPI, PostgreSQL and an LLM. The LLM drafts the query, my code checks and repairs it before it runs, and it retries if something fails. It remembers the conversation, so a vague follow-up like “what about last quarter?” still makes sense. It also recommends products based on customers with similar purchases and forecasts sales on the dashboard.',
-        learned: 'The model writes a decent first draft. Most of the real work is in the guardrails around it: dates, joins and follow-up questions that don’t quite say what they mean.',
-        tools: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'pandas', 'Groq LLM API', 'HTML/JS'],
-        code: 'https://github.com/DhritiVichhivora/Database-Chatbot_Assisstance',
-        demo: 'https://database-chatbot-assisstance-mf97.onrender.com/',
-        demoNote: 'free server, may take a minute to wake up',
-        visual: 'terminal'
+        chips: ['12+ months', 'artist · genre · time of day']
       }
     ],
     /* Made-up examples for the terminal illustration (not real data) */
@@ -165,54 +190,134 @@ window.SITE = {
     }
   },
 
-  /* --- 03 Skills --- */
-  skills: {
-    label: '03 — Toolkit',
-    headline: 'What’s in the toolkit?',
-    groups: [
-      { title: 'Data and analytics', icon: 'chart',
-        items: ['Python', 'SQL', 'pandas', 'NumPy', 'Time series (STL, ARIMA)', 'Hypothesis testing', 'ANOVA', 'Forecasting', 'Plotly', 'matplotlib', 'seaborn'] },
-      { title: 'AI and ML', icon: 'spark',
-        items: ['Regression (OLS, Ridge, Lasso)', 'Cross-validation', 'scikit-learn', 'statsmodels', 'Markov chains', 'LLMs', 'Recommendation logic'] },
-      { title: 'Tools and building', icon: 'tools',
-        items: ['Streamlit', 'FastAPI', 'PostgreSQL', 'MySQL', 'SQLAlchemy', 'HTML, CSS, JS', 'Git and GitHub', 'Deploying apps'] },
-      { title: 'People skills', icon: 'people',
-        items: ['Public speaking (MUN)', 'Mentoring', 'Team leadership', 'Language learning'] }
+  /* --- 03 Experience and education ("on the record") --- */
+  record: {
+    label: '03 — Experience & education',
+    headline: 'What’s on her record?',
+    experienceLabel: 'Experience',
+    experience: [
+      {
+        when: 'June 2026',
+        role: 'Data Science Intern',
+        org: 'Logixal · Mumbai',
+        points: [
+          'Contributed to an enterprise conversational analytics platform that lets business teams query internal databases in plain English.',
+          'Worked on turning natural language into database queries and on automatic query correction, and supported multi-turn conversations so follow-up questions resolve using earlier context.',
+          'Helped with the recommendation and forecasting modules, and with the dashboard layer that surfaces insights through charts and quick-action queries.',
+          'Then rebuilt a scaled-down version end to end on my own (Project 01).'
+        ]
+      }
     ],
-    exploringLead: 'Currently exploring',
-    exploring: ['AI', 'Machine Learning', 'GenAI', 'Data Visualisation']
+    educationLabel: 'Education',
+    education: [
+      {
+        when: '2022 – 2028',
+        role: 'B.Tech in Data Science',
+        org: 'Six-year integrated programme · NMIMS Mumbai'
+      }
+    ],
+    certsLabel: 'Certifications',
+    certs: [
+      { name: 'Python for Data Science, AI & Development', by: 'IBM · Coursera', href: 'https://www.coursera.org/account/accomplishments/records/C80FHB1FHT53' },
+      { name: 'Exploratory Data Analysis for Machine Learning', by: 'IBM · Coursera', href: 'https://www.coursera.org/account/accomplishments/records/A0VOSRVLLZXS' },
+      { name: 'Introduction to Deep Learning & Neural Networks with Keras', by: 'IBM · Coursera', href: 'https://www.coursera.org/account/accomplishments/records/JWAW3MI4RM3M' }
+    ],
+    certLink: 'View certificate'
   },
 
-  /* --- 04 Beyond tech: flip cards --- */
+  /* --- 04 Skills: the record crate --- */
+  skills: {
+    label: '04 — Toolkit',
+    headline: 'What’s in the crate?',
+    intro: 'My skills, filed like records. Hover or tap a sleeve to pull the record out.',
+    sides: [
+      { side: 'Side A', title: 'Making sense of data',
+        tracks: [
+          ['Python', 'where every project starts'],
+          ['SQL', 'asking databases the right questions'],
+          ['pandas & NumPy', 'turning messy into usable'],
+          ['EDA & data cleaning', 'the unglamorous 80%'],
+          ['Time series (STL, ARIMA)', 'patterns that repeat, and the ones that don’t'],
+          ['Hypothesis testing & ANOVA', 'proving it, not just plotting it'],
+          ['Power BI & Tableau', 'when a dashboard has to do the talking'],
+          ['Plotly, Matplotlib, Seaborn', 'charts that tell the story']
+        ] },
+      { side: 'Side B', title: 'Teaching machines',
+        tracks: [
+          ['Regression (OLS, Ridge, Lasso)', 'finding what actually drives the number'],
+          ['Classification & clustering', 'sorting things into sensible groups'],
+          ['Cross-validation', 'keeping my models honest'],
+          ['scikit-learn & statsmodels', 'the modelling toolbox'],
+          ['Markov chains', 'what happens next, in probabilities'],
+          ['LLMs', 'plain English in, answers out'],
+          ['Recommendation logic', 'people who bought this also…']
+        ] },
+      { side: 'Side C', title: 'Shipping it',
+        tracks: [
+          ['Streamlit', 'from notebook to live app'],
+          ['FastAPI', 'backends that answer back'],
+          ['PostgreSQL & MySQL', 'where the data lives'],
+          ['SQLAlchemy', 'Python, meet database'],
+          ['Docker', 'works on my machine, and yours'],
+          ['Git & GitHub', 'every version, saved'],
+          ['HTML, CSS & JS', 'how this site was built'],
+          ['C/C++ & Java', 'the classroom classics']
+        ] },
+      { side: 'Side D', title: 'The people part',
+        tracks: [
+          ['Public speaking', 'sharpened at MUN'],
+          ['Mentoring', 'weekly sessions at an NGO'],
+          ['Team leadership', 'leading tech at Data Mavericks'],
+          ['Event coordination', 'college events, from plan to execution'],
+          ['Languages', 'German, A1 certified']
+        ] }
+    ],
+    exploringLead: 'Currently exploring',
+    exploring: ['AI', 'Machine Learning', 'LLMs', 'Deep Learning', 'Data Visualisation']
+  },
+
+  /* --- 05 Beyond tech: flip cards --- */
   beyond: {
-    label: '04 — Bonus tracks',
+    label: '05 — Bonus tracks',
     headline: 'Beyond the code',
-    hint: 'Four things I do away from the screen. Hover, tap or press Enter to turn a card over.',
+    hint: 'Eight things I do away from the screen. Hover, tap or press Enter to turn a card over.',
     cards: [
-      { id: 'mun', title: 'MUN',
-        line: 'I take part in Model United Nations: research a country’s position, then argue for it out loud in a room full of people.',
-        detail: 'Model United Nations' },
-      { id: 'volunteer', title: 'Volunteering',
-        line: 'I mentor children at the Dynamic Sansta NGO. Explaining things simply turns out to be a skill you keep practising.',
-        detail: 'Dynamic Sansta NGO · mentoring' },
-      { id: 'communities', title: 'College communities',
+      { id: 'mun', title: 'MUN', teaser: 'Delegate',
+        line: 'I represent assigned countries in formal committee sessions: research the position, then argue it out loud. It’s where I learned to build an argument and think on my feet.',
+        detail: 'Model United Nations · NMIMS Mumbai' },
+      { id: 'volunteer', title: 'Volunteering', teaser: 'Mentor',
+        line: 'I mentor children at the Dynamic Sansta NGO in foundational subjects, week after week. Explaining things simply turns out to be a skill you keep practising.',
+        detail: 'Dynamic Sansta NGO · weekly mentoring' },
+      { id: 'communities', title: 'College communities', teaser: 'Three roles',
         line: 'I’ve served on three college communities, and now lead the tech team at Data Mavericks.',
         timeline: [
           ['2023-2024', 'Cultural executive'],
           ['2024-2025', 'Publicity Executive, IETE'],
           ['2026 – present', 'Head of the Tech department, Data Mavericks']
         ] },
-      { id: 'german', title: 'German A1',
-        line: 'I’m learning German and have reached A1. The next goal is a whole conversation without switching back to English.',
-        detail: 'Level A1 · still going' }
+      { id: 'german', title: 'German', teaser: 'A1 certified',
+        line: 'Certified at A1 and now working towards A2. The next goal is a whole conversation without switching back to English.',
+        detail: 'A1 certified · A2 in progress' },
+      { id: 'hackathons', title: 'Hackathons', teaser: 'Smart India Hackathon',
+        line: 'I’ve taken part in hackathons, including the Smart India Hackathon: a real problem statement, a team, and a clock that never slows down.',
+        detail: 'Smart India Hackathon' },
+      { id: 'sport', title: 'Sport', teaser: 'Swimming · Badminton',
+        line: 'Swimming laps and playing badminton are how I reset. Both reward the same thing data does: patience and practice.',
+        detail: 'Swimming · Badminton' },
+      { id: 'travel', title: 'Travel', teaser: 'Somewhere new',
+        line: 'I’m happiest somewhere new, talking to people I’ve just met. Every trip comes back as a few good stories.',
+        detail: 'New places, new people' },
+      { id: 'food', title: 'Food', teaser: 'Always hungry',
+        line: 'Good food is one of my favourite things, and trying something new to eat is half the fun of going anywhere.',
+        detail: 'Powered by data and good food' }
     ]
   },
 
-  /* --- 05 Contact --- */
+  /* --- 06 Contact --- */
   contact: {
-    label: '05 — Contact',
+    label: '06 — Contact',
     headline: 'Say hi.',
-    line: 'Got an idea, a dataset, or a debate topic? My inbox is open.',
+    line: 'Open to internships and data projects.',
     email: 'dhriti076@gmail.com',
     links: [
       { label: 'Email', href: 'mailto:dhriti076@gmail.com' },
@@ -225,5 +330,5 @@ window.SITE = {
     replay: 'Replay from the top'
   },
 
-  footer: '© 2026 Dhriti Vichhivora · Hand-coded in HTML, CSS and JS · Built with help from Claude'
+  footer: '© 2026 Dhriti Vichhivora'
 };

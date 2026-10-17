@@ -224,20 +224,6 @@ html:not(.js) .curtain{display:none}
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
-/* ---------- 9. Custom cursor (mouse only) ---------- */
-.cur-dot,.cur-ring{position:fixed;left:0;top:0;z-index:300;pointer-events:none;display:none}
-.has-cursor .cur-dot,.has-cursor .cur-ring{display:block}
-.has-cursor,.has-cursor a,.has-cursor button,.has-cursor [role="slider"]{cursor:none}
-.cur-dot{width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--hot)}
-.cur-ring{width:38px;height:38px;margin:-19px 0 0 -19px}
-.cur-ring-i{
-  position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--hot);
-  display:grid;place-items:center;transition:transform .3s var(--ease), background-color .3s;
-}
-.cur-ring.big .cur-ring-i{transform:scale(1.68);background:rgba(255,77,109,.15)}
-.cur-label{font:700 7px/1 var(--font-body);letter-spacing:.14em;color:var(--hot)}
-.cur-hidden .cur-dot,.cur-hidden .cur-ring{opacity:0}
-
 /* ---------- 10. Scroll reveal ---------- */
 .reveal-on [data-reveal]{opacity:0;transform:translateY(40px)}
 .reveal-on [data-reveal].in{
@@ -305,29 +291,12 @@ html:not(.js) .curtain{display:none}
 .deck{display:grid;gap:22px;padding-top:18px;border-top:1px solid rgba(247,240,235,.35)}
 .deck-tag{font:italic 700 clamp(1.4rem,2.4vw,2rem)/1.15 var(--font-display);margin:0;max-width:16em}
 .deck-intro{margin:0;color:var(--rose);font-size:15px;line-height:1.6;max-width:30em}
-.deck-toc .label{color:var(--rose);margin-bottom:8px;letter-spacing:.06em;text-transform:none;font:13px/1.5 var(--font-mono)}
-.deck-toc ol{list-style:none;margin:0;padding:0}
-.deck-toc a{display:flex;align-items:baseline;gap:12px;padding:5px 0;text-decoration:none;font-size:15px;border-bottom:1px solid rgba(247,240,235,.14);transition:color .2s, padding .3s var(--ease)}
-.deck-toc a span{font:12px/1 var(--font-mono);color:var(--rose)}
-.deck-toc a i{margin-left:auto;font-style:normal;opacity:0;transform:translateX(-6px);transition:opacity .2s, transform .3s var(--ease);color:var(--hot)}
-.deck-toc a:hover{padding-left:6px}
-.deck-toc a:hover i{opacity:1;transform:none}
-
 .cover-base{display:flex;justify-content:space-between;align-items:flex-end;margin-top:20px}
 .scroll-cue{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ivory);padding:10px 0;min-height:44px}
 .scroll-cue svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;animation:bob 1.6s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:none}50%{transform:translateY(5px)}}
 .barcode{display:flex;align-items:flex-end;gap:3px;height:26px;flex:none}
 .barcode i{display:block;height:100%;background:var(--ivory)}
-
-/* ---------- 13. Outlined text band ---------- */
-.band{position:relative;z-index:3;background:var(--ivory);overflow:hidden;padding:clamp(28px,5vw,56px) 0 0}
-.band-track{display:flex;width:max-content;will-change:transform}
-.band-text{
-  font:900 clamp(3rem,12vw,9rem)/1.05 var(--font-display);white-space:nowrap;margin:0;padding-right:.35em;
-  color:transparent;-webkit-text-stroke:2px var(--burgundy);transition:color .4s;
-}
-.band:hover .band-text{color:var(--rose)}
 
 /* ---------- 14. About ---------- */
 .s-about{z-index:3}
@@ -342,9 +311,6 @@ html:not(.js) .curtain{display:none}
 .portrait figcaption{display:flex;gap:14px;align-items:baseline;padding-top:12px;border-top:1px solid var(--ink);margin-top:14px;font:italic 500 16px/1.3 var(--font-display)}
 .portrait figcaption span{font:500 11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--burgundy)}
 
-.about-copy .lead{font:500 clamp(1.3rem,2.2vw,1.75rem)/1.4 var(--font-display);margin-bottom:24px}
-.about-copy .lead::first-letter{float:left;font:900 4.2em/.8 var(--font-display);color:var(--burgundy);margin:.06em .1em 0 0}
-.about-copy p{font-size:clamp(16px,1.4vw,18px)}
 .under-word{position:relative;display:inline-block}
 .under{position:absolute;left:0;right:0;bottom:-.06em;height:4px;background:var(--hot);transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease) .3s}
 .under.drawn,html:not(.reveal-on) .under{transform:scaleX(1)}
@@ -354,11 +320,6 @@ html:not(.js) .curtain{display:none}
 .spec div{display:grid;grid-template-columns:1fr;gap:2px 24px;padding:12px 0;border-bottom:1px solid rgba(36,32,32,.18)}
 .spec dt{font:500 12px/1.5 var(--font-body);letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy)}
 .spec dd{margin:0;font-size:16px}
-.interests{margin-top:28px}
-.interests .label{color:var(--burgundy);margin-bottom:8px}
-.interests ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;font:italic 500 clamp(1.1rem,1.8vw,1.35rem)/1.6 var(--font-display)}
-.interests li+li::before{content:"/";margin:0 .45em;color:var(--hot);font-style:normal}
-
 /* ---------- 15. Work: the tracklist on a dark "album sleeve" page ---------- */
 .s-work{z-index:3}
 .work-sub{font:italic 700 clamp(1.2rem,2.4vw,1.7rem)/1 var(--font-display);color:var(--rose);margin:14px 0 0}
@@ -375,7 +336,8 @@ html:not(.js) .curtain{display:none}
 .trk-num{grid-area:num;position:relative;align-self:start;font:italic 900 2rem/1 var(--font-display);color:transparent;-webkit-text-stroke:1px var(--rose);height:2rem}
 .trk-title{grid-area:title;font:700 clamp(1.5rem,3.2vw,2.5rem)/1.05 var(--font-display);color:var(--ivory)}
 .trk-sum{grid-area:sum;font-size:15px;color:var(--rose)}
-.trk-tools{grid-area:tools;font:12px/1.6 var(--font-mono);color:var(--rose);letter-spacing:.04em}
+.trk-meta{grid-area:tools;font:12px/1.7 var(--font-mono);color:var(--rose);letter-spacing:.04em}
+.trk-status{display:inline-block;margin-right:10px;padding:1px 9px;border:1px solid var(--hot);border-radius:999px;color:var(--ivory);font:500 11px/1.6 var(--font-body);letter-spacing:.1em;text-transform:uppercase}
 .trk-arr{
   grid-area:arr;justify-self:end;align-self:start;width:44px;height:44px;border-radius:50%;border:1px solid var(--rose);
   display:grid;place-items:center;font:300 24px/1 var(--font-body);color:var(--ivory);transition:transform .35s var(--ease), border-color .2s;
@@ -390,7 +352,8 @@ html:not(.js) .curtain{display:none}
 .trk-head:hover .trk-n,.trk-head[aria-expanded="true"] .trk-n{opacity:0}
 @keyframes eq{from{transform:scaleY(.2)}to{transform:scaleY(1)}}
 @media (hover:hover) and (pointer:fine){
-  .trk-head:hover{background:var(--burgundy);padding-left:20px;padding-right:20px}
+  .trk-row:hover{background:var(--burgundy)}
+  .trk-row:hover .trk-head{padding-left:20px;padding-right:20px}
   .trk-head:hover .trk-arr{border-color:var(--hot)}
 }
 
@@ -482,24 +445,8 @@ html:not(.js) .curtain{display:none}
 .term-t th{color:var(--rose);font-weight:500}
 .term-t td{color:var(--ivory)}
 
-/* ---------- 17. Skills: a typographic index ---------- */
+/* ---------- 17. Skills ---------- */
 .s-skills{z-index:3}
-.skill-grid{display:grid;gap:40px 32px}
-.skill-col{border-top:2px solid var(--ink);padding-top:16px}
-.sk-top{display:flex;align-items:center;justify-content:space-between;color:var(--burgundy)}
-.sk-num{font:500 13px/1 var(--font-mono)}
-.sk-icon{width:24px;height:24px;fill:none;stroke:var(--burgundy);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.skill-col h3{font:700 clamp(1.4rem,2.2vw,1.75rem)/1.1 var(--font-display);margin:14px 0 12px}
-.skill-list{list-style:none;margin:0;padding:0}
-.skill-list li{
-  position:relative;padding:9px 0;border-bottom:1px solid rgba(36,32,32,.2);font-size:16px;
-  transition:transform .3s var(--ease), color .2s;
-}
-.skill-list li::before{content:"";position:absolute;left:-18px;top:50%;width:10px;height:2px;background:var(--hot);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
-@media (hover:hover) and (pointer:fine){
-  .skill-list li:hover{transform:translateX(14px);color:var(--burgundy-deep)}
-  .skill-list li:hover::before{transform:scaleX(1)}
-}
 .explore{margin:clamp(56px,8vw,96px) 0 0;padding-top:24px;border-top:1px solid var(--ink);font:400 clamp(1.7rem,4.6vw,3.6rem)/1.15 var(--font-display)}
 .explore-lead{display:inline}
 .flipword{display:inline-grid;vertical-align:bottom;perspective:600px;font-style:italic;font-weight:900;color:var(--burgundy)}
@@ -511,28 +458,29 @@ html:not(.js) .curtain{display:none}
 /* ---------- 18. Beyond tech: flip cards ---------- */
 .s-beyond{z-index:3}
 .beyond-hint{margin:-40px 0 32px;font-size:15px;max-width:34em;opacity:.8}
-.flips{display:grid;grid-template-columns:1fr;gap:16px;list-style:none;margin:0;padding:0}
+.flips{display:grid;grid-template-columns:1fr;gap:14px;list-style:none;margin:0;padding:0}
 .flip-wrap{position:relative}
 .flip{display:block;width:100%;height:100%;perspective:1200px;text-align:left;border-radius:14px}
-.flip-in{display:grid;height:100%;min-height:220px;transform-style:preserve-3d;transition:transform .7s var(--ease)}
+.flip-in{display:grid;height:100%;min-height:190px;transform-style:preserve-3d;transition:transform .7s var(--ease)}
 .flip[aria-pressed="true"] .flip-in{transform:rotateY(180deg)}
 .face{
-  grid-area:1/1;display:flex;flex-direction:column;gap:12px;padding:20px;border-radius:14px;
+  grid-area:1/1;display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:14px;
   -webkit-backface-visibility:hidden;backface-visibility:hidden;
 }
 .f-top{display:flex;justify-content:space-between;align-items:center;font:500 12px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;opacity:.85}
 .f-plus{width:28px;height:28px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font:300 18px/1 var(--font-body)}
-.f-title{display:block;margin-top:auto;font:700 clamp(1.6rem,2.6vw,2.2rem)/1.05 var(--font-display)}
-.f-line{display:block;font-size:15px;line-height:1.5}
+.f-title{display:block;margin-top:auto;font:700 clamp(1.3rem,2vw,1.7rem)/1.05 var(--font-display)}
+.f-line{display:block;font-size:14px;line-height:1.5}
 .face.back{transform:rotateY(180deg);background:var(--burgundy-deep);color:var(--ivory)}
 .f-detail{display:block;margin-top:auto;font:12px/1.4 var(--font-mono);color:var(--rose)}
 .tl{display:block}
 .tl-row{display:grid;grid-template-columns:1fr;gap:0 12px;padding:8px 0;border-top:1px solid rgba(228,170,185,.3);font-size:14px;line-height:1.35}
 .tl-y{font:12px/1.4 var(--font-mono);color:var(--rose)}
-.flip-mun .front{background:var(--burgundy);color:var(--ivory)}
-.flip-volunteer .front{background:var(--rose);color:var(--ink)}
-.flip-communities .front{background:var(--ink);color:var(--ivory)}
-.flip-german .front{background:var(--ivory);background:color-mix(in srgb, var(--hot) 12%, var(--ivory));color:var(--ink);border:1px solid var(--burgundy)}
+.flip-wrap:nth-child(4n+1) .front{background:var(--burgundy);color:var(--ivory)}
+.flip-wrap:nth-child(4n+2) .front{background:var(--rose);color:var(--ink)}
+.flip-wrap:nth-child(4n+3) .front{background:var(--ink);color:var(--ivory)}
+.flip-wrap:nth-child(4n+4) .front{background:var(--ivory);background:color-mix(in srgb, var(--hot) 12%, var(--ivory));color:var(--ink);border:1px solid var(--burgundy)}
+.f-teaser{display:block;font-size:14px;line-height:1.45;opacity:.9}
 @media (hover:hover) and (pointer:fine){
   .flip:hover .flip-in{transform:rotateY(180deg)}
 }
@@ -558,6 +506,79 @@ html:not(.js) .curtain{display:none}
 .footer{background:var(--burgundy-deep);color:var(--ivory);text-align:center;font-size:14px;padding:28px var(--pad)}
 .footer p{margin:0}
 
+/* ---------- 14b. About: big statement, photo on a burgundy block, highlights ---------- */
+.deck-food{display:block;margin-top:10px;font:italic 500 15px/1.4 var(--font-display);color:var(--ivory)}
+.statement{font:900 clamp(2rem,5.4vw,4.6rem)/1.02 var(--font-display);letter-spacing:-.015em;margin:0 0 clamp(44px,6vw,80px);max-width:15em}
+.about-copy p{font-size:clamp(16px,1.4vw,18px)}
+.about-copy p:first-child{font:500 clamp(1.15rem,1.8vw,1.4rem)/1.5 var(--font-display)}
+.ph-block{position:relative}
+.ph-block::before{content:"";position:absolute;inset:18px -18px -18px 18px;background:var(--burgundy)}
+.ph-block .ph{z-index:1}
+.portrait figcaption{margin-top:32px}
+.highlights{margin-top:clamp(56px,8vw,100px);background:var(--burgundy);color:var(--ivory);border-radius:var(--radius);padding:clamp(24px,4vw,44px)}
+.highlights .label{color:var(--rose);margin-bottom:18px}
+.highlights ul{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.highlights li{border-top:1px solid rgba(247,240,235,.3);padding-top:14px}
+.hl-big{display:block;font:900 clamp(2.4rem,5vw,4rem)/1 var(--font-display);color:var(--rose)}
+.hl-text{display:block;margin-top:8px;font-size:15px;line-height:1.45}
+
+/* ---------- 15b. Project rows: links on the row, a fuller case study ---------- */
+.trk-row{display:grid;grid-template-columns:1fr;align-items:center;border-radius:12px;transition:background-color .35s var(--ease)}
+.trk-links{display:flex;flex-wrap:wrap;gap:8px;padding:0 8px 20px 74px}
+.btn-xs{min-height:44px;padding:0 16px;font-size:14px}
+.trk-links .btn,.case-links .btn{color:var(--ivory)}
+.trk-links .btn-solid{background:var(--ivory);color:var(--burgundy-deep);border-color:var(--ivory)}
+.built{margin:6px 0 0;padding-left:1.1em}
+.built li{margin:6px 0}
+.built li::marker{color:var(--hot)}
+
+/* ---------- 16b. Experience and education ("on the record") ---------- */
+.s-record{--bg:var(--ivory);z-index:3}
+.rec-grid{display:grid;gap:48px}
+.rec-h{font:500 12px/1.4 var(--font-body);letter-spacing:.22em;text-transform:uppercase;color:var(--burgundy);margin:0;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.rec-h2{margin-top:48px}
+.rec-item{display:grid;grid-template-columns:1fr;gap:6px 24px;padding:20px 0;border-bottom:1px solid rgba(36,32,32,.18)}
+.rec-when{margin:0;font:13px/1.6 var(--font-mono);color:var(--burgundy)}
+.rec-role{margin:0;font:700 clamp(1.4rem,2.4vw,1.9rem)/1.15 var(--font-display)}
+.rec-org{margin:4px 0 0;font-size:15px;opacity:.85}
+.rec-points{margin:14px 0 0;padding-left:1.1em;font-size:16px}
+.rec-points li{margin:7px 0}
+.rec-points li::marker{color:var(--hot)}
+.certs{list-style:none;margin:0;padding:0}
+.cert{display:block;padding:16px 0;border-bottom:1px solid rgba(36,32,32,.18);text-decoration:none;transition:padding .3s var(--ease)}
+.cert-name{display:block;font:700 1.15rem/1.3 var(--font-display);transition:color .2s}
+.cert-by{display:block;margin-top:4px;font:13px/1.4 var(--font-mono);color:var(--burgundy)}
+.cert:hover{padding-left:10px}
+.cert:hover .cert-name{color:var(--burgundy)}
+
+/* ---------- 17b. Skills as a record crate ---------- */
+.crate-intro{margin:-40px 0 36px;font-size:16px;max-width:34em}
+.crate{display:grid;gap:24px}
+.crate-item{display:grid;gap:22px;padding:22px;border:1.5px solid var(--ink);border-radius:var(--radius);background:var(--ivory);overflow:hidden}
+.sleeve-art{position:relative;width:130px;height:130px;margin-right:70px;cursor:pointer}
+.sleeve{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:space-between;padding:12px;border-radius:6px;box-shadow:0 10px 24px rgba(20,8,12,.25)}
+.sl-side{font:500 11px/1 var(--font-mono);letter-spacing:.14em;text-transform:uppercase}
+.sl-title{font:900 1.15rem/1.05 var(--font-display)}
+.crate-0 .sleeve{background:var(--burgundy);color:var(--ivory)}
+.crate-1 .sleeve{background:var(--ink);color:var(--ivory)}
+.crate-2 .sleeve{background:var(--rose);color:var(--ink);border:1.5px solid var(--ink)}
+.crate-3 .sleeve{background:var(--burgundy-deep);color:var(--rose)}
+/* The record: a dark disc with groove rings (inset shadows, no gradients) and a hot-pink label */
+.disc{
+  position:absolute;top:5px;left:5px;width:120px;height:120px;border-radius:50%;background:#140910;
+  box-shadow:inset 0 0 0 8px #140910, inset 0 0 0 9px rgba(228,170,185,.28), inset 0 0 0 18px #140910, inset 0 0 0 19px rgba(228,170,185,.22), inset 0 0 0 28px #140910, inset 0 0 0 29px rgba(228,170,185,.18);
+  display:grid;place-items:center;transition:transform .8s var(--ease);
+}
+.disc-label{width:40px;height:40px;border-radius:50%;background:var(--hot);color:var(--ink);display:grid;place-items:center;font:900 17px/1 var(--font-display)}
+.crate-item:hover .disc,.crate-item.out .disc{transform:translateX(55%) rotate(220deg)}
+.crate-tracks .label{color:var(--burgundy)}
+.crate-tracks h3{font:700 clamp(1.4rem,2.4vw,1.8rem)/1.1 var(--font-display);margin:6px 0 12px}
+.tk-list{list-style:none;margin:0;padding:0}
+.tk-list li{display:grid;grid-template-columns:28px 1fr;gap:0 10px;padding:8px 0;border-top:1px solid rgba(36,32,32,.15)}
+.tk-n{grid-row:1 / 3;font:12px/1.7 var(--font-mono);color:var(--burgundy)}
+.tk-name{font-weight:500;font-size:16px;line-height:1.35}
+.tk-note{font:italic 400 15px/1.35 var(--font-display);opacity:.8}
+
 /* ==========================================================================
    WOW LAYER
    ========================================================================== */
@@ -568,7 +589,7 @@ html:not(.js) .curtain{display:none}
 /* Pinned cover (only switched on by JS when GSAP loads and the screen suits it) */
 .pin-on .cover-wrap{height:180vh}
 .pin-on .s-cover{position:sticky;top:0;height:100vh;min-height:0}
-.pin-on .band{margin-top:-30vh}
+.pin-on .s-about{margin-top:-30vh}
 
 /* Section page-wipe: GSAP animates --w; the line rides the leading edge */
 .wipe-ready .sec-bg{clip-path:inset(calc(var(--w,0) * 1%) 0 0 0)}
@@ -614,6 +635,8 @@ html:not(.js) .curtain{display:none}
   .pl-track,.pl-fill{border-radius:0}
 }
 @media (min-width:480px){
+  .flips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rec-item{grid-template-columns:150px 1fr}
   .tl-row{grid-template-columns:auto 1fr}
   .spec div{grid-template-columns:minmax(120px,.8fr) 2fr;align-items:baseline}
 }
@@ -622,17 +645,17 @@ html:not(.js) .curtain{display:none}
   .sec-meta .folio-r{display:block}
   .folio span:nth-child(2){display:inline}
   .deck{grid-template-columns:1.1fr 1fr;column-gap:40px}
-  .deck-toc{grid-column:1 / -1}
   .trk-head{
     grid-template-columns:72px minmax(0,1fr) minmax(0,.7fr) 44px;
     grid-template-areas:"num title tools arr" "num sum tools arr";gap:6px 24px;padding:26px 8px;
   }
   .trk-num{font-size:2.6rem;height:2.6rem}
-  .trk-tools{align-self:center}
-  .flips{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-  .flip-in{aspect-ratio:4/3;min-height:0}
-  .face{padding:24px}
-  .skill-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trk-meta{align-self:center}
+  .highlights ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trk-links{padding-left:104px}
+  .crate-item{grid-template-columns:220px 1fr;align-items:start;padding:28px}
+  .sleeve-art{width:150px;height:150px}
+  .disc{width:140px;height:140px}
 }
 @media (min-width:900px){
   .nav-links{display:flex}
@@ -641,6 +664,10 @@ html:not(.js) .curtain{display:none}
   .about-grid{grid-template-columns:.85fr 1.15fr;gap:72px;align-items:start}
   .trk-body{grid-template-columns:1fr 1fr;gap:48px;padding:12px 8px 52px 104px}
   .viz{min-height:340px}
+  .trk-row{grid-template-columns:1fr auto}
+  .trk-links{flex-wrap:nowrap;padding:0 16px 0 0}
+  .rec-grid{grid-template-columns:1.2fr 1fr;gap:72px}
+  .flips{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 @media (min-width:900px){
   /* Wide screens: a slightly smaller name and a tighter deck so the whole cover fits one screen */
@@ -649,17 +676,14 @@ html:not(.js) .curtain{display:none}
   .nm-1{font-size:min(21vw,36vh)}
   .nm-2{font-size:min(11vw,19vh)}
   .deck{padding-top:14px}
-  .deck-toc a{padding:3px 0;font-size:14px}
   .cover-base{margin-top:6px}
   .scroll-cue{padding:4px 0;min-height:36px}
-  .deck{grid-template-columns:1.1fr 1fr .9fr}
-  .deck-toc{grid-column:auto;padding-left:32px;border-left:1px solid rgba(247,240,235,.25)}
+  .deck{grid-template-columns:1.2fr 1fr}
   .deck-intro{padding-left:32px;border-left:1px solid rgba(247,240,235,.25)}
 }
 @media (min-width:1200px){
-  .flips{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .flip-in{aspect-ratio:3/4}
-  .skill-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .highlights ul{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .crate{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:899px){
   .portrait{width:min(100%,420px)}
@@ -683,7 +707,7 @@ html:not(.js) .curtain{display:none}
   .nm-line{clip-path:none}
   .reveal-on [data-reveal]{transform:none}
   .reveal-on [data-reveal].in{transition:opacity .6s}
-  .portrait .ph,.btn,.trk-arr,.skill-list li,.c-row,.c-arr,.deck-toc a{transition-property:opacity,color,background-color,border-color !important}
+  .portrait .ph,.btn,.trk-arr,.c-row,.c-arr{transition-property:opacity,color,background-color,border-color !important}
   .portrait .ph{transform:none !important}
   .flip-in{transition:none}
   .flip .face{transition:opacity .4s}

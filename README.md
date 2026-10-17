@@ -4,7 +4,7 @@
 
 ## The concept
 
-A magazine cover that opens into a music player. The site opens on my name, set huge like a fashion cover, in burgundy, dusty rose and one loud hot pink. As you scroll, a player bar at the bottom treats each section as a track: the cover, then the liner notes (About), the tracklist (my projects), the toolkit (skills), the bonus tracks (life beyond code) and finally "Say hi". Scrolling to the end of the page ends the track.
+A magazine cover that opens into a music player. The site opens on my name, set huge like a fashion cover, in burgundy, dusty rose and one loud hot pink. As you scroll, a player bar at the bottom treats each section as a track: the cover, then About, the tracklist (my projects), what's on my record (experience and education), the record crate (skills), the bonus tracks (life beyond code) and finally "Say hi". Scrolling to the end of the page ends the track.
 
 ## Tech
 
@@ -16,8 +16,9 @@ Plain HTML, CSS and JavaScript, written by hand. No frameworks, no build step, n
 - **Player bar:** shows the section in view as the current track, scroll progress as a 2:30 track, a seekable progress bar, previous/next, play/pause for all ambient animation, and Replay at the end
 - **Mood switcher:** three colour palettes (Burgundy, Midnight, Blush), remembered between visits
 - **Wiggling letters:** every big headline reacts letter by letter on hover or tap
-- **Animated project visuals:** a bar chart, a self-drawing line chart, an equaliser and a typing terminal, all hand-made illustrations (not real results)
-- **Editorial layout:** page-wipe section transitions, a dark tracklist page with a project preview that follows the cursor, a typographic skills index, flip cards for life beyond tech, copy-email button and a custom cursor on desktop
+- **Projects as case studies:** the question, the data, what I built, what I learned and the tools, with GitHub and live-app links, plus animated illustrations (a bar chart, a self-drawing line chart, an equaliser and a typing terminal; not real results)
+- **Record crate:** skills filed as vinyl sleeves whose records slide out, each skill with a one-line note
+- **Editorial layout:** page-wipe section transitions, a dark tracklist page with a project preview that follows the cursor, experience and education with linked certificates, flip cards for life beyond tech and a copy-email button
 - Mobile first, keyboard accessible, and respects reduced-motion settings
 
 ## Editing the content

@@ -47,17 +47,6 @@
     toastTimer = setTimeout(function () { t.classList.remove('show'); }, ms || 1600);
   }
 
-  /* Simple line icons for the skills index (hand-drawn paths, 24x24 grid) */
-  var ICONS = {
-    chart: '<path d="M4 20V11M10 20V5M16 20v-7M21 20H3"/>',
-    spark: '<circle cx="12" cy="12" r="2.6"/><path d="M12 2.5v4.5M12 17v4.5M2.5 12H7M17 12h4.5M5.6 5.6l3 3M15.4 15.4l3 3M5.6 18.4l3-3M15.4 8.6l3-3"/>',
-    tools: '<path d="M8 6l-5 6 5 6M16 6l5 6-5 6M13.5 4l-3 16"/>',
-    people: '<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.6 14.1c3 .3 5.4 2.7 5.4 5.9"/>'
-  };
-  function icon(name, cls) {
-    return '<svg class="' + cls + '" viewBox="0 0 24 24" aria-hidden="true">' + (ICONS[name] || '') + '</svg>';
-  }
-
   /* Deterministic "random" numbers, so the illustrations look the same every visit */
   function seeded(i) { var x = Math.sin(i * 12.9898 + 4.1) * 43758.5453; return x - Math.floor(x); }
 
@@ -80,9 +69,6 @@
     var widths = [3, 1, 2, 1, 4, 1, 2, 3, 1, 2];
     var barcode = widths.map(function (w) { return '<i style="width:' + w + 'px"></i>'; }).join('');
     var folio = (p.folio || []).map(function (f) { return '<span>' + esc(f) + '</span>'; }).join('');
-    var toc = (p.toc || []).filter(function (t) { return S[t.id] || t.id === 'about'; }).map(function (t, i) {
-      return '<li><a href="#' + t.id + '"><span>' + pad2(i + 1) + '</span>' + esc(t.label) + '<i aria-hidden="true">→</i></a></li>';
-    }).join('');
 
     return '<div class="cover-wrap" id="cover-wrap">' +
       '<section class="sec s-cover" id="top" data-track="top" aria-label="Cover">' +
@@ -98,8 +84,7 @@
         '</div>' +
         '<div class="deck">' +
           '<p class="deck-tag">' + tag + '<span class="hot">.</span></p>' +
-          '<p class="deck-intro">' + esc(p.intro) + '</p>' +
-          (toc ? '<nav class="deck-toc" aria-label="In this issue"><p class="label">' + esc(p.tocTitle) + '</p><ol>' + toc + '</ol></nav>' : '') +
+          '<p class="deck-intro">' + esc(p.intro) + (p.foodLine ? '<span class="deck-food">' + esc(p.foodLine) + '</span>' : '') + '</p>' +
         '</div>' +
         '<div class="cover-base">' +
           '<a class="scroll-cue" href="#about"><span class="label">Scroll</span>' +
@@ -110,38 +95,36 @@
       '</section></div>';
   }
 
-  function renderBand() {
-    if (!S.band) return '';
-    var t = '<p class="band-text">' + esc(S.band) + '</p>';
-    return '<div class="band" id="band" aria-hidden="true"><div class="band-track" id="band-track">' + t + t + t + '</div></div>';
-  }
-
   function renderAbout() {
     var a = S.about;
     if (!a) return '';
     var p = S.profile;
     var paras = a.paragraphs.map(function (t, i) {
-      return '<p' + (i === 0 ? ' class="lead"' : '') + ' data-reveal data-delay="' + (i * 100) + '">' + esc(t) + '</p>';
+      return '<p data-reveal data-delay="' + (i * 100) + '">' + esc(t) + '</p>';
     }).join('');
     var rows = a.facts.map(function (f) {
       return '<div><dt>' + esc(f[0]) + '</dt><dd>' + esc(f[1]) + '</dd></div>';
     }).join('');
-    var interests = a.interests.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+    var highlights = a.highlights.map(function (h, i) {
+      return '<li data-reveal data-delay="' + (i * 90) + '"><span class="hl-big">' + esc(h.big) + '</span><span class="hl-text">' + esc(h.text) + '</span></li>';
+    }).join('');
 
     return '<section class="sec s-about" id="about" data-track="about" aria-labelledby="about-h">' +
       '<div class="sec-bg"></div><div class="wrap">' +
-      head(a.label, a.headline, 'about-h', ' data-under="' + esc(a.squiggle) + '"') +
+      head(a.label, a.headline, 'about-h', ' data-under="' + esc(a.underline) + '"') +
+      '<p class="statement" data-reveal>' + esc(a.statement) + '</p>' +
       '<div class="about-grid">' +
         '<figure class="portrait" data-reveal data-tilt="4">' +
-          '<div class="ph"><img src="' + esc(p.photo) + '" alt="' + esc(p.photoAlt) + '" width="800" height="1000" loading="lazy" decoding="async">' +
-          '<span class="ph-fallback" aria-hidden="true">' + esc(p.monogram) + '</span></div>' +
+          '<div class="ph-block"><div class="ph"><img src="' + esc(p.photo) + '" alt="' + esc(p.photoAlt) + '" width="800" height="1000" loading="lazy" decoding="async">' +
+          '<span class="ph-fallback" aria-hidden="true">' + esc(p.monogram) + '</span></div></div>' +
           '<figcaption><span>Fig. 01</span>' + esc(a.caption) + '</figcaption>' +
         '</figure>' +
         '<div class="about-copy">' + paras +
           '<dl class="spec" data-reveal>' + rows + '</dl>' +
-          '<div class="interests" data-reveal><p class="label">' + esc(a.interestsLabel) + '</p><ul>' + interests + '</ul></div>' +
         '</div>' +
-      '</div></div></section>';
+      '</div>' +
+      '<div class="highlights"><p class="label">' + esc(a.highlightsLabel) + '</p><ul>' + highlights + '</ul></div>' +
+      '</div></section>';
   }
 
   /* --- Project visuals (illustrations, made-up shapes) --- */
@@ -226,37 +209,48 @@
       '<div class="term-body" aria-hidden="true"></div></div></div>';
   }
 
+  /* GitHub and live-app buttons (used on each row and inside the case study) */
+  function projectLinks(p, small) {
+    var w = S.work, ext = '<span class="sr-only"> (opens in a new tab)</span>';
+    var cls = small ? 'btn btn-xs' : 'btn btn-sm';
+    var out = '';
+    if (p.code) out += '<a class="' + cls + ' btn-solid" href="' + esc(p.code) + '" target="_blank" rel="noopener noreferrer">' + esc(w.codeLabel) +
+      ' <span class="arr" aria-hidden="true">' + ARROW + '</span>' + ext + '</a>';
+    if (p.demo) out += '<a class="' + cls + '" href="' + esc(p.demo) + '" target="_blank" rel="noopener noreferrer">' + esc(w.demoLabel) +
+      ' <span class="arr" aria-hidden="true">' + ARROW + '</span>' + ext + '</a>';
+    return out;
+  }
+
   function renderWork() {
     var w = S.work;
     if (!w) return '';
     var L = w.blockLabels;
-    var ext = '<span class="sr-only"> (opens in a new tab)</span>';
     var rows = w.projects.map(function (p, i) {
-      var toolsLine = p.tools.map(esc).join(' / ');
       var viz = p.visual === 'bars' ? vizBars() : p.visual === 'line' ? vizLine() : p.visual === 'eq' ? vizEq(p.chips) : vizTerminal();
-      var blocks = '<dt>' + esc(L.what) + '</dt><dd>' + esc(p.what) + '</dd>';
-      if (p.did) blocks += '<dt>' + esc(L.did) + '</dt><dd>' + esc(p.did) + '</dd>';
-      if (p.learned) blocks += '<dt>' + esc(L.learned) + '</dt><dd>' + esc(p.learned) + '</dd>';
-      if (toolsLine) blocks += '<dt>' + esc(L.tools) + '</dt><dd class="tools-line">' + toolsLine + '</dd>';
-      var links = p.code
-        ? '<a class="btn btn-sm btn-solid" href="' + esc(p.code) + '" target="_blank" rel="noopener noreferrer">' + esc(w.codeLabel) +
-          ' <span class="arr" aria-hidden="true">' + ARROW + '</span>' + ext + '</a>'
-        : '<span class="tag soon">' + esc(w.soonLabel) + '</span>';
-      if (p.demo) {
-        links += '<a class="btn btn-sm" href="' + esc(p.demo) + '" target="_blank" rel="noopener noreferrer">' + esc(w.demoLabel) +
-          ' <span class="arr" aria-hidden="true">' + ARROW + '</span>' + ext + '</a>';
-        if (p.demoNote) links += '<p class="demo-note">Live demo: ' + esc(p.demoNote) + '.</p>';
-      }
+      var blocks = '';
+      if (p.origin) blocks += '<dt>' + esc(L.origin) + '</dt><dd>' + esc(p.origin) + '</dd>';
+      blocks += '<dt>' + esc(L.question) + '</dt><dd>' + esc(p.question) + '</dd>';
+      blocks += '<dt>' + esc(L.data) + '</dt><dd>' + esc(p.data) + '</dd>';
+      blocks += '<dt>' + esc(L.built) + '</dt><dd><ul class="built">' + p.built.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul></dd>';
+      blocks += '<dt>' + esc(L.learned) + '</dt><dd>' + esc(p.learned) + '</dd>';
+      blocks += '<dt>' + esc(L.tools) + '</dt><dd class="tools-line">' + p.tools.map(esc).join(' / ') + '</dd>';
+      var links = projectLinks(p, false);
+      var rowLinks = projectLinks(p, true);
       return '<li class="trk" data-id="' + esc(p.id) + '" data-visual="' + esc(p.visual) + '" data-reveal data-delay="' + (i * 80) + '">' +
-        '<button class="trk-head" type="button" id="h-' + esc(p.id) + '" aria-expanded="false" aria-controls="p-' + esc(p.id) + '" data-cursor="OPEN">' +
-          '<span class="trk-num" aria-hidden="true"><span class="trk-n">' + pad2(i + 1) + '</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>' +
-          '<span class="trk-title">' + esc(p.title) + '</span>' +
-          '<span class="trk-sum">' + esc(p.summary) + '</span>' +
-          '<span class="trk-tools">' + (toolsLine || esc(w.soonLabel)) + '</span>' +
-          '<span class="trk-arr" aria-hidden="true">+</span>' +
-        '</button>' +
+        '<div class="trk-row">' +
+          '<button class="trk-head" type="button" id="h-' + esc(p.id) + '" aria-expanded="false" aria-controls="p-' + esc(p.id) + '">' +
+            '<span class="trk-num" aria-hidden="true"><span class="trk-n">' + pad2(i + 1) + '</span><span class="eq"><i></i><i></i><i></i><i></i></span></span>' +
+            '<span class="trk-title">' + esc(p.title) + '</span>' +
+            '<span class="trk-sum">' + esc(p.summary) + '</span>' +
+            '<span class="trk-meta"><span class="trk-status">' + esc(p.status) + '</span>' + p.tools.slice(0, 3).map(esc).join(' / ') + '</span>' +
+            '<span class="trk-arr" aria-hidden="true">+</span>' +
+          '</button>' +
+          (rowLinks ? '<div class="trk-links">' + rowLinks + '</div>' : '') +
+        '</div>' +
         '<div class="trk-panel" id="p-' + esc(p.id) + '" role="region" aria-labelledby="h-' + esc(p.id) + '"><div class="trk-clip"><div class="trk-body">' +
-          viz + '<div class="case"><dl>' + blocks + '</dl><div class="case-links">' + links + '</div></div>' +
+          viz + '<div class="case"><dl>' + blocks + '</dl>' +
+          (links ? '<div class="case-links">' + links + (p.demoNote ? '<p class="demo-note">Live app: ' + esc(p.demoNote) + '.</p>' : '') + '</div>' : '') +
+          '</div>' +
         '</div></div></div></li>';
     }).join('');
 
@@ -268,21 +262,55 @@
       '</div></section>';
   }
 
+  /* Experience, education and certifications */
+  function renderRecord() {
+    var r = S.record;
+    if (!r) return '';
+    function item(e) {
+      return '<article class="rec-item" data-reveal><p class="rec-when">' + esc(e.when) + '</p><div>' +
+        '<h4 class="rec-role">' + esc(e.role) + '</h4><p class="rec-org">' + esc(e.org) + '</p>' +
+        (e.points ? '<ul class="rec-points">' + e.points.map(function (pt) { return '<li>' + esc(pt) + '</li>'; }).join('') + '</ul>' : '') +
+        '</div></article>';
+    }
+    var certs = r.certs.map(function (c) {
+      return '<li><a class="cert" href="' + esc(c.href) + '" target="_blank" rel="noopener noreferrer">' +
+        '<span class="cert-name">' + esc(c.name) + '</span><span class="cert-by">' + esc(c.by) + ' · ' + esc(r.certLink) + ' ' + ARROW + '</span>' +
+        '<span class="sr-only"> (opens in a new tab)</span></a></li>';
+    }).join('');
+    return '<section class="sec s-record" id="record" data-track="record" aria-labelledby="record-h">' +
+      '<div class="sec-bg"></div><div class="wrap">' +
+      head(r.label, r.headline, 'record-h') +
+      '<div class="rec-grid">' +
+        '<div class="rec-col"><h3 class="rec-h">' + esc(r.experienceLabel) + '</h3>' + r.experience.map(item).join('') + '</div>' +
+        '<div class="rec-col"><h3 class="rec-h">' + esc(r.educationLabel) + '</h3>' + r.education.map(item).join('') +
+          '<h3 class="rec-h rec-h2">' + esc(r.certsLabel) + '</h3><ul class="certs" data-reveal>' + certs + '</ul></div>' +
+      '</div></div></section>';
+  }
+
+  /* Skills as a record crate: each group is a sleeve with its record and tracklist */
   function renderSkills() {
     var k = S.skills;
     if (!k) return '';
-    var cols = k.groups.map(function (g, i) {
-      var items = g.items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
-      return '<article class="skill-col" data-reveal data-delay="' + (i * 90) + '">' +
-        '<div class="sk-top"><span class="sk-num">' + pad2(i + 1) + '</span>' + icon(g.icon, 'sk-icon') + '</div>' +
-        '<h3>' + esc(g.title) + '</h3><ul class="skill-list">' + items + '</ul></article>';
+    var crate = k.sides.map(function (s, i) {
+      var tracks = s.tracks.map(function (t, j) {
+        return '<li><span class="tk-n">' + pad2(j + 1) + '</span><span class="tk-name">' + esc(t[0]) + '</span><span class="tk-note">' + esc(t[1]) + '</span></li>';
+      }).join('');
+      var letter = s.side.slice(-1);
+      return '<article class="crate-item crate-' + i + '" data-reveal data-delay="' + (i * 90) + '">' +
+        '<div class="sleeve-art" aria-hidden="true">' +
+          '<span class="disc"><span class="disc-label">' + esc(letter) + '</span></span>' +
+          '<span class="sleeve"><span class="sl-side">' + esc(s.side) + '</span><span class="sl-title">' + esc(s.title) + '</span></span>' +
+        '</div>' +
+        '<div class="crate-tracks"><p class="label">' + esc(s.side) + '</p><h3>' + esc(s.title) + '</h3><ol class="tk-list">' + tracks + '</ol></div>' +
+        '</article>';
     }).join('');
     var words = k.exploring.map(function (w, i) { return '<span' + (i === 0 ? ' class="on"' : '') + '>' + esc(w) + '</span>'; }).join('');
     var list = k.exploring.map(esc).join(', ');
     return '<section class="sec s-skills" id="skills" data-track="skills" aria-labelledby="skills-h">' +
       '<div class="sec-bg"></div><div class="wrap">' +
       head(k.label, k.headline, 'skills-h') +
-      '<div class="skill-grid">' + cols + '</div>' +
+      '<p class="crate-intro" data-reveal>' + esc(k.intro) + '</p>' +
+      '<div class="crate">' + crate + '</div>' +
       '<p class="explore" data-reveal><span class="explore-lead">' + esc(k.exploringLead) + ' → </span>' +
         '<span class="flipword" id="flipword" aria-hidden="true" aria-live="off">' + words + '</span>' +
         '<span class="explore-static" aria-hidden="true">' + list + '</span>' +
@@ -300,9 +328,9 @@
             return '<span class="tl-row"><span class="tl-y">' + esc(r[0]) + '</span><span>' + esc(r[1]) + '</span></span>';
           }).join('') + '</span>'
         : '<span class="f-line">' + esc(c.line) + '</span><span class="f-detail">' + esc(c.detail) + '</span>';
-      var frontLine = c.timeline ? '<span class="f-line">' + esc(c.line) + '</span>' : '';
-      return '<li class="flip-wrap" data-reveal data-delay="' + (i * 90) + '">' +
-        '<button class="flip flip-' + esc(c.id) + '" type="button" aria-pressed="false" data-cursor="FLIP">' +
+      var frontLine = '<span class="f-teaser">' + esc(c.timeline ? c.line : c.teaser) + '</span>';
+      return '<li class="flip-wrap" data-reveal data-delay="' + (i % 4 * 80) + '">' +
+        '<button class="flip flip-' + esc(c.id) + '" type="button" aria-pressed="false">' +
           '<span class="flip-in">' +
             '<span class="face front">' +
               '<span class="f-top" aria-hidden="true"><span>Bonus ' + n + '</span><span class="f-plus">+</span></span>' +
@@ -337,7 +365,7 @@
       '<header class="sec-head"><div class="sec-meta" data-reveal><p class="label">' + esc(c.label) + '</p>' +
         '<p class="label folio-r" aria-hidden="true">' + esc(p.name) + ' · ' + esc(p.playlist) + '</p></div>' +
         '<h2 class="say" id="contact-h" data-split data-hotdot>' + esc(c.headline) + '</h2></header>' +
-      '<p class="contact-line" data-reveal>' + esc(c.line) + '</p>' +
+      (c.line ? '<p class="contact-line" data-reveal>' + esc(c.line) + '</p>' : '') +
       '<ul class="c-rows" data-reveal>' + rows + '</ul>' +
       '<div class="c-actions" data-reveal>' +
         '<button class="btn btn-sm" id="copy-btn" type="button" data-magnet="6">' + esc(c.copyLabel) + '</button>' +
@@ -348,7 +376,7 @@
 
   /* Build every section, then swap out the plain fallback */
   function initRender() {
-    var html = renderCover() + renderBand() + renderAbout() + renderWork() + renderSkills() + renderBeyond() + renderContact();
+    var html = renderCover() + renderAbout() + renderWork() + renderRecord() + renderSkills() + renderBeyond() + renderContact();
     if (!html) throw new Error('No content in js/data.js');
     var main = $('#main');
     var fb = $('#fallback');
@@ -494,7 +522,7 @@
      ========================================================================== */
   function initPlayer() {
     var T = S.tracks || {};
-    var ids = ['top', 'about', 'work', 'skills', 'beyond', 'contact'];
+    var ids = ['top', 'about', 'work', 'record', 'skills', 'beyond', 'contact'];
     var secs = ids.map(function (id) { return doc.getElementById(id); }).filter(Boolean);
     var titleBox = $('#pl-title'), fill = $('#pl-fill'), now = $('#pl-now'), track = $('#pl-track');
     var next = $('#pl-next'), prev = $('#pl-prev'), play = $('#pl-play');
@@ -675,36 +703,6 @@
       emit('dv:mood', next.id);
       toast('Mood: ' + next.name, 1600);
     });
-  }
-
-  /* ==========================================================================
-     CUSTOM CURSOR (mouse only)
-     ========================================================================== */
-  function initCursor() {
-    if (!fine || reduce) return;
-    var dot = $('#cur-dot'), ring = $('#cur-ring'), label = $('#cur-label');
-    var x = -100, y = -100, rx = -100, ry = -100, running = false;
-    root.classList.add('has-cursor');
-    function loop() {
-      rx = lerp(rx, x, 0.18); ry = lerp(ry, y, 0.18);
-      ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
-      if (Math.abs(rx - x) + Math.abs(ry - y) > 0.3) requestAnimationFrame(loop); else running = false;
-    }
-    doc.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse') return;
-      x = e.clientX; y = e.clientY;
-      dot.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
-      root.classList.remove('cur-hidden');
-      if (!running) { running = true; requestAnimationFrame(loop); }
-    }, { passive: true });
-    doc.addEventListener('mouseover', function (e) {
-      var t = e.target;
-      var hot = t.closest && t.closest('a,button,[role="slider"],label');
-      var tagged = t.closest && t.closest('[data-cursor]');
-      ring.classList.toggle('big', !!hot);
-      label.textContent = tagged ? tagged.getAttribute('data-cursor') : '';
-    });
-    root.addEventListener('mouseleave', function () { root.classList.add('cur-hidden'); });
   }
 
   /* ==========================================================================
@@ -942,6 +940,15 @@
   }
 
   /* ==========================================================================
+     RECORD CRATE: tap a sleeve to pull its record out (hover does it with a mouse)
+     ========================================================================== */
+  function initCrate() {
+    $$('.crate-item').forEach(function (item) {
+      $('.sleeve-art', item).addEventListener('click', function () { item.classList.toggle('out'); });
+    });
+  }
+
+  /* ==========================================================================
      COPY EMAIL and REPLAY
      ========================================================================== */
   function initCopy() {
@@ -965,30 +972,6 @@
     }
     var rp = $('#replay-btn');
     if (rp) rp.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-  }
-
-  /* ==========================================================================
-     OUTLINED BAND: drifts sideways, faster when you scroll faster
-     ========================================================================== */
-  function initBand() {
-    var band = $('#band'), trackEl = $('#band-track');
-    if (!band || reduce) return;
-    var x = 0, lastY = window.scrollY, vel = 0, visible = false, raf = 0;
-    function frame() {
-      raf = 0;
-      if (!visible || state.paused) return;
-      var y = window.scrollY;
-      vel = lerp(vel, Math.abs(y - lastY), 0.2);
-      lastY = y;
-      var w = trackEl.firstChild.offsetWidth || 1;
-      x -= 0.4 + vel * 0.3;
-      if (x <= -w) x += w;
-      trackEl.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
-      raf = requestAnimationFrame(frame);
-    }
-    function kick() { if (!raf && visible && !state.paused) raf = requestAnimationFrame(frame); }
-    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; kick(); }).observe(band);
-    doc.addEventListener('dv:pause', kick);
   }
 
   /* ==========================================================================
@@ -1198,7 +1181,7 @@
   function initWipes() {
     var G = window.gsap, ST = window.ScrollTrigger;
     if (!G || !ST || reduce) return;
-    var secs = ['about', 'work', 'skills', 'beyond', 'contact'].map(function (id) { return doc.getElementById(id); }).filter(Boolean);
+    var secs = ['about', 'work', 'record', 'skills', 'beyond', 'contact'].map(function (id) { return doc.getElementById(id); }).filter(Boolean);
     root.classList.add('wipe-ready');
     secs.forEach(function (sec, i) {
       var bg = $('.sec-bg', sec);
@@ -1213,7 +1196,7 @@
       });
     });
     /* Headlines rise word by word from behind a mask */
-    $$('.s-about .display, .s-work .display, .s-skills .display, .s-beyond .display, .say').forEach(function (h) {
+    $$('.sec .display, .say').forEach(function (h) {
       if (h.getBoundingClientRect().top < window.innerHeight) return;
       h.style.clipPath = 'inset(-20% -5% 0 -5%)';
       G.from($$('.w', h), {
@@ -1300,7 +1283,6 @@
   run('initPlayer', initPlayer);
   run('initNav', initNav);
   run('initMood', initMood);
-  run('initCursor', initCursor);
   run('initReveal', initReveal);
   run('initTilt', initTilt);
   run('initMagnet', initMagnet);
@@ -1308,8 +1290,8 @@
   run('initTerminal', initTerminal);
   run('initProjects', initProjects);
   run('initFlip', initFlip);
+  run('initCrate', initCrate);
   run('initCopy', initCopy);
-  run('initBand', initBand);
   run('initCover', initCover);
   run('initExplore', initExplore);
   /* The wow layer: optional extras */
