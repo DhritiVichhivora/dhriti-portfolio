@@ -14,7 +14,6 @@ window.SITE = {
     tagline: 'Figuring it out. Building it anyway.',
     foodLine: 'Powered by data and good food.',
     playlist: 'Portfolio 2026',
-    intro: 'Data Science student at NMIMS Mumbai and Data Science intern at Logixal, summer 2026. Exploring AI, machine learning and LLMs.',
     photo: 'assets/photo.jpg',
     photoSmall: 'assets/photo-small.jpg',
     photoAlt: 'Portrait of Dhriti Vichhivora'

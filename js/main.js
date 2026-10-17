@@ -82,7 +82,7 @@
         '</div>' +
         '<div class="deck">' +
           '<p class="deck-tag">' + tag + '<span class="hot">.</span></p>' +
-          '<p class="deck-intro">' + esc(p.intro) + (p.foodLine ? '<span class="deck-food">' + esc(p.foodLine) + '</span>' : '') + '</p>' +
+          '<p class="deck-intro">' + (p.intro ? esc(p.intro) : '') + (p.foodLine ? '<span class="deck-food">' + esc(p.foodLine) + '</span>' : '') + '</p>' +
         '</div>' +
         '<div class="cover-base">' +
           '<a class="scroll-cue" href="#about"><span class="label">Scroll</span>' +
