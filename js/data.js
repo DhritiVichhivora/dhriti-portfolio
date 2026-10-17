@@ -55,10 +55,10 @@ window.SITE = {
     label: '01 — About',
     headline: 'Who is Dhriti?',
     underline: 'Dhriti',
-    statement: 'I like finding the story hiding inside a messy dataset.',
+    statement: 'Strong opinions, open mind, always hungry.',
     paragraphs: [
-      'I’m a Data Science student in NMIMS Mumbai’s integrated B.Tech programme, and I’m happiest when a question I can’t answer yet turns into something I can build.',
-      'Right now I’m exploring AI, machine learning and LLMs, and how to make data look as good as it is useful. Away from the screen you’ll find me swimming laps, playing badminton, or somewhere new, talking to people I’ve just met. I also do MUN, mentor children at an NGO, take part in hackathons, and I’m certified at A1 in German, now working towards A2. And I never say no to good food.'
+      'I’m Dhriti, a Data Science student at NMIMS Mumbai, young and still exploring. I like taking my time with things: understanding them properly, then seeing what I can make of them.',
+      'People find me easy to talk to and hard to ignore. I lead from the front, speak my mind, and never say no to good food. Where I’ll end up, I honestly don’t know yet, and I’m enjoying finding out.'
     ],
     caption: 'Figuring it out.',
     facts: [
