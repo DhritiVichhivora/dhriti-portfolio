@@ -68,14 +68,12 @@
     var tag = esc(p.tagline.replace(/\.$/, ''));
     var widths = [3, 1, 2, 1, 4, 1, 2, 3, 1, 2];
     var barcode = widths.map(function (w) { return '<i style="width:' + w + 'px"></i>'; }).join('');
-    var folio = (p.folio || []).map(function (f) { return '<span>' + esc(f) + '</span>'; }).join('');
 
     return '<div class="cover-wrap" id="cover-wrap">' +
       '<section class="sec s-cover" id="top" data-track="top" aria-label="Cover">' +
       '<div class="sec-bg"><canvas class="ink" id="ink" aria-hidden="true"></canvas></div>' +
       '<div class="glow amb" id="glow" aria-hidden="true"></div>' +
       '<div class="wrap cover-in">' +
-        '<p class="folio">' + folio + '</p>' +
         '<div class="cover-main">' +
           '<h1 class="cover-name" id="cover-name" aria-label="' + esc(p.name) + '">' +
             '<span class="nm-line nm-1" data-split="cover">' + esc(p.first) + '</span>' +
@@ -1209,7 +1207,7 @@
     root.classList.add('pin-on');
     var tl = G.timeline({ scrollTrigger: { trigger: wrap, start: 'top top', end: 'bottom bottom', scrub: true } });
     tl.to('#cover-name', { scale: 0.4, y: -window.innerHeight * 0.08, ease: 'none', duration: 0.7 }, 0)
-      .to(['#top .deck', '#top .folio', '#top .cover-base', '#glow'], { opacity: 0, y: -30, ease: 'none', duration: 0.45 }, 0)
+      .to(['#top .deck', '#top .cover-base', '#glow'], { opacity: 0, y: -30, ease: 'none', duration: 0.45 }, 0)
       .fromTo('#top .sec-bg',
         { clipPath: 'inset(0vh 0vw 0vh 0vw round 0px)' },
         { clipPath: 'inset(7vh 5vw 7vh 5vw round 36px)', ease: 'none', duration: 0.7 }, 0)
