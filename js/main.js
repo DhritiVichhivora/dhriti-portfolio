@@ -640,7 +640,17 @@
      ========================================================================== */
   function initNav() {
     var nav = $('#nav'), burger = $('#burger'), menu = $('#menu');
-    function onScroll() { nav.classList.toggle('scrolled', (window.scrollY || 0) > 80); }
+    var lastY = window.scrollY || 0;
+    function onScroll() {
+      var y = window.scrollY || 0;
+      nav.classList.toggle('scrolled', y > 80);
+      /* Hide the bar while reading down the page; bring it back on any scroll up */
+      if (!menu.classList.contains('open')) {
+        if (y > lastY + 6 && y > 240) nav.classList.add('nav-hide');
+        else if (y < lastY - 6 || y <= 240) nav.classList.remove('nav-hide');
+      }
+      lastY = y;
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
@@ -654,6 +664,7 @@
 
     function setOpen(open, returnFocus) {
       menu.classList.toggle('open', open);
+      if (open) nav.classList.remove('nav-hide');
       nav.classList.toggle('menu-open', open);
       burger.setAttribute('aria-expanded', String(open));
       burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');

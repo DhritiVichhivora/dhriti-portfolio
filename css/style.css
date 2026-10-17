@@ -15,8 +15,8 @@
   --font-display:'Playfair Display',Georgia,serif;
   --font-body:'Space Grotesk',system-ui,sans-serif;
   --font-mono:ui-monospace,Menlo,Consolas,monospace;  /* system stack, not a web font */
-  --player-h:64px;
-  --nav-h:72px;
+  --player-h:52px;
+  --nav-h:56px;
   --pad:clamp(20px,5vw,64px);
 }
 /* Colour moods only swap the palette variables */
@@ -114,7 +114,10 @@ body::after{
 html:not(.js) .curtain{display:none}
 
 /* ---------- 6. Navigation ---------- */
-.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:130;color:var(--ivory);transition:color .3s}
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:130;color:var(--ivory);transition:color .3s, transform .35s var(--ease)}
+/* Slides away while scrolling down, comes back on scroll up or keyboard focus */
+.nav.nav-hide{transform:translateY(-100%)}
+.nav.nav-hide:focus-within{transform:none}
 .nav::before{
   content:"";position:absolute;inset:0;background:var(--ivory);opacity:0;
   border-bottom:1px solid rgba(36,32,32,.12);transition:opacity .3s;
@@ -172,8 +175,8 @@ html:not(.js) .curtain{display:none}
   background:var(--burgundy-deep);color:var(--ivory);border-top:1px solid var(--rose);
   display:flex;align-items:center;gap:clamp(12px,2vw,28px);
 }
-.pl-art{position:relative;width:40px;height:40px;flex:none}
-.pl-art img,.pl-mono{position:absolute;inset:0;width:40px;height:40px;border-radius:50%;object-fit:cover}
+.pl-art{position:relative;width:34px;height:34px;flex:none}
+.pl-art img,.pl-mono{position:absolute;inset:0;width:34px;height:34px;border-radius:50%;object-fit:cover}
 .pl-mono{display:none;place-items:center;background:var(--burgundy);font:900 15px/1 var(--font-display)}
 .pl-art.no-img img{display:none}
 .pl-art.no-img .pl-mono{display:grid}
