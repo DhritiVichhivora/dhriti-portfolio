@@ -581,9 +581,11 @@ html:not(.js) .curtain{display:none}
 /* Hovering a skill turns it burgundy, like a track being highlighted */
 .tk-list li{transition:background-color .25s, padding .3s var(--ease)}
 .tk-name,.tk-note,.tk-n{transition:color .25s}
-.tk-list li:hover{background:rgba(107,38,59,.06);padding-left:8px}
-.tk-list li:hover .tk-name,.tk-list li:hover .tk-note{color:var(--burgundy);opacity:1}
+.tk-list li:hover{background:var(--burgundy);padding-left:10px;border-radius:8px;border-top-color:transparent}
+.tk-list li:hover .tk-name{color:var(--ivory)}
+.tk-list li:hover .tk-note{color:var(--rose);opacity:1}
 .tk-list li:hover .tk-n{color:var(--hot)}
+.tk-list li:hover + li{border-top-color:transparent}
 
 /* ==========================================================================
    WOW LAYER
