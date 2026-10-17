@@ -183,23 +183,17 @@
       '</svg></div>';
   }
 
-  function eqBars(n, cls) {
-    var bars = '';
-    for (var i = 0; i < n; i++) {
-      var c = 'color-mix(in srgb, var(--hot) ' + Math.round(i / (n - 1) * 100) + '%, var(--rose))';
-      var du = (0.7 + seeded(i) * 0.7).toFixed(2);
-      var de = (-seeded(i + 40) * 1.4).toFixed(2);
-      bars += '<i style="--c:' + c + ';--du:' + du + 's;--de:' + de + 's"></i>';
-    }
-    return '<div class="' + cls + ' amb" aria-hidden="true">' + bars + '</div>';
-  }
-  function vizEq(chips) {
-    var chipHtml = (chips || []).map(function (c) { return '<span class="tag eq-chip">' + esc(c) + '</span>'; }).join('');
-    return '<div class="viz" data-viz="eq"><span class="viz-tag">illustration</span>' + eqBars(24, 'eqv') +
-      '<div class="eq-row"><button class="eq-play" type="button" aria-label="Play equaliser" aria-pressed="true">' +
-        '<svg class="i-pause" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>' +
-        '<svg class="i-play" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>' +
-      '</button>' + chipHtml + '</div></div>';
+  /* Real screenshots of a project: one large view plus page thumbnails */
+  function vizGallery(items) {
+    var thumbs = items.map(function (g, i) {
+      return '<button class="gal-thumb" type="button" aria-pressed="' + (i === 0) + '" data-i="' + i + '">' +
+        '<img src="' + esc(g.src) + '" alt="" width="160" height="90" loading="lazy" decoding="async"><span>' + esc(g.label) + '</span></button>';
+    }).join('');
+    var first = items[0];
+    return '<div class="viz gallery" data-viz="gallery"><span class="viz-tag">the real dashboard \u00b7 tap to enlarge</span>' +
+      '<button class="gal-main" type="button" aria-label="Enlarge: ' + esc(first.label) + '">' +
+        '<img src="' + esc(first.src) + '" alt="' + esc(first.alt) + '" width="1000" height="560" loading="lazy" decoding="async"></button>' +
+      '<div class="gal-thumbs" role="group" aria-label="Dashboard pages">' + thumbs + '</div></div>';
   }
 
   function vizTerminal() {
@@ -226,7 +220,7 @@
     if (!w) return '';
     var L = w.blockLabels;
     var rows = w.projects.map(function (p, i) {
-      var viz = p.visual === 'bars' ? vizBars() : p.visual === 'line' ? vizLine() : p.visual === 'eq' ? vizEq(p.chips) : vizTerminal();
+      var viz = p.visual === 'bars' ? vizBars() : p.visual === 'line' ? vizLine() : p.visual === 'gallery' ? vizGallery(p.gallery) : vizTerminal();
       var blocks = '';
       if (p.origin) blocks += '<dt>' + esc(L.origin) + '</dt><dd>' + esc(p.origin) + '</dd>';
       blocks += '<dt>' + esc(L.question) + '</dt><dd>' + esc(p.question) + '</dd>';
@@ -842,15 +836,52 @@
       svg.addEventListener('pointerleave', function () { viz.classList.remove('hovering'); });
     });
 
-    /* Equaliser: its own play / pause button (the global pause also applies) */
-    visuals.eq = { start: function () {}, stop: function () {} };
-    $$('.eq-play').forEach(function (b) {
-      var bars = $('.eqv', b.closest('.viz'));
-      b.addEventListener('click', function () {
-        var playing = b.getAttribute('aria-pressed') !== 'true';
-        b.setAttribute('aria-pressed', String(playing));
-        bars.classList.toggle('stopped', !playing);
+    /* Gallery: thumbnails switch the large view; the large view opens a lightbox */
+    visuals.gallery = { start: function () {}, stop: function () {} };
+    var box = null, boxImg, boxCap, items = [], at = 0;
+    function show(i) {
+      at = (i + items.length) % items.length;
+      boxImg.src = items[at].src; boxImg.alt = items[at].alt;
+      boxCap.textContent = items[at].label + ' \u00b7 ' + (at + 1) + ' of ' + items.length;
+    }
+    function lightbox(list, i) {
+      if (!box) {
+        box = doc.createElement('dialog');
+        box.className = 'lightbox';
+        box.setAttribute('aria-label', 'Dashboard screenshot');
+        box.innerHTML = '<img alt=""><p class="lb-cap"></p>' +
+          '<button class="lb-btn lb-prev" type="button" aria-label="Previous page">\u2190</button>' +
+          '<button class="lb-btn lb-next" type="button" aria-label="Next page">\u2192</button>' +
+          '<button class="lb-btn lb-close" type="button" aria-label="Close">\u00d7</button>';
+        body.appendChild(box);
+        boxImg = $('img', box); boxCap = $('.lb-cap', box);
+        $('.lb-prev', box).addEventListener('click', function () { show(at - 1); });
+        $('.lb-next', box).addEventListener('click', function () { show(at + 1); });
+        $('.lb-close', box).addEventListener('click', function () { box.close(); });
+        box.addEventListener('click', function (e) { if (e.target === box) box.close(); });
+        box.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowLeft') show(at - 1);
+          if (e.key === 'ArrowRight') show(at + 1);
+        });
+      }
+      items = list;
+      show(i);
+      if (box.showModal) box.showModal(); else window.open(items[i].src, '_blank', 'noopener');
+    }
+    $$('.gallery').forEach(function (g) {
+      var li = g.closest('.trk');
+      var proj = (S.work.projects || []).filter(function (p) { return p.id === li.getAttribute('data-id'); })[0];
+      var list = proj.gallery, cur = 0;
+      var main = $('.gal-main', g), img = $('img', main);
+      $$('.gal-thumb', g).forEach(function (t) {
+        t.addEventListener('click', function () {
+          cur = +t.getAttribute('data-i');
+          img.src = list[cur].src; img.alt = list[cur].alt;
+          main.setAttribute('aria-label', 'Enlarge: ' + list[cur].label);
+          $$('.gal-thumb', g).forEach(function (o) { o.setAttribute('aria-pressed', String(o === t)); });
+        });
       });
+      main.addEventListener('click', function () { lightbox(list, cur); });
     });
   }
 
@@ -1225,7 +1256,10 @@
         var pts = LINE.data.map(function (v, i) { return [i * 260 / 23, 120 - (v - 2) * 20]; });
         return '<svg viewBox="0 0 260 130" aria-hidden="true"><path d="' + smoothPath(pts) + '" fill="none" stroke="var(--ivory)" stroke-width="3"/></svg>';
       })(),
-      eq: eqBars(16, 'pv-eq').replace(' amb', ''),
+      gallery: (function () {
+        var sp = (S.work.projects || []).filter(function (p) { return p.gallery; })[0];
+        return sp ? '<img class="pv-img" src="' + esc(sp.gallery[0].src) + '" alt="">' : '';
+      })(),
       terminal: '<div class="pv-term">&gt; <b>' + esc(S.work.terminal.examples[0].ask) + '</b><br>' + esc(S.work.terminal.examples[0].rows[0].join('  ')) + '</div>'
     };
     var card = doc.createElement('div');

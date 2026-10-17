@@ -16,7 +16,7 @@ Plain HTML, CSS and JavaScript, written by hand. No frameworks, no build step, n
 - **Player bar:** shows the section in view as the current track, scroll progress as a 2:30 track, a seekable progress bar, previous/next, play/pause for all ambient animation, and Replay at the end
 - **Mood switcher:** three colour palettes (Burgundy, Midnight, Blush), remembered between visits
 - **Wiggling letters:** every big headline reacts letter by letter on hover or tap
-- **Projects as case studies:** the question, the data, what I built, what I learned and the tools, with GitHub and live-app links, plus animated illustrations (a bar chart, a self-drawing line chart, an equaliser and a typing terminal; not real results)
+- **Projects as case studies:** the question, the data, what I built, what I learned and the tools, with GitHub and live-app links, plus animated illustrations (a bar chart, a self-drawing line chart and a typing terminal; not real results) and a click-to-enlarge gallery of my real Power BI Spotify dashboard
 - **Record crate:** skills filed as vinyl sleeves whose records slide out, each skill with a one-line note
 - **Editorial layout:** page-wipe section transitions, a dark tracklist page with a project preview that follows the cursor, experience and education with linked certificates, flip cards for life beyond tech and a copy-email button
 - Mobile first, keyboard accessible, and respects reduced-motion settings

@@ -413,19 +413,27 @@ html:not(.js) .curtain{display:none}
 .line-viz.drawn .lv-area{opacity:.3}
 .line-viz.hovering .lv-guide,.line-viz.hovering .lv-tip{opacity:1}
 
-/* Music equaliser */
-.eqv{flex:1;display:flex;align-items:flex-end;gap:4px;min-height:170px;padding-top:20px}
-.eqv i{flex:1;height:100%;border-radius:3px 3px 1px 1px;transform-origin:bottom;transform:scaleY(.15);background:var(--rose);background:var(--c);animation:eqv var(--du) ease-in-out var(--de) infinite alternate}
-.eqv.stopped i{animation-play-state:paused}
-@keyframes eqv{from{transform:scaleY(.15)}to{transform:scaleY(1)}}
-.eq-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
-.eq-play{width:48px;height:48px;border-radius:50%;background:var(--ivory);color:var(--burgundy-deep);display:grid;place-items:center;transition:transform .12s var(--spring)}
-.eq-play:hover{transform:translateY(-2px)}
-.eq-play:active{transform:scale(.96)}
-.eq-play svg{fill:currentColor}
-.eq-play .i-play,.eq-play[aria-pressed="false"] .i-pause{display:none}
-.eq-play[aria-pressed="false"] .i-play{display:block}
-.eq-chip{font-size:12px;color:var(--ivory);border-color:var(--rose)}
+/* Gallery of real screenshots */
+.gallery{padding-bottom:16px}
+.gal-main{display:block;width:100%;border-radius:12px;overflow:hidden;border:1px solid rgba(228,170,185,.35);background:#000;transition:transform .3s var(--ease), border-color .2s}
+.gal-main img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top left}
+.gal-main:hover{transform:translateY(-2px);border-color:var(--hot)}
+.gal-thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+.gal-thumb{display:flex;flex-direction:column;gap:4px;padding:4px;border-radius:8px;border:1px solid transparent;text-align:left;font-size:11px;color:var(--rose);min-height:44px;transition:border-color .2s, background-color .2s}
+.gal-thumb img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-radius:4px;opacity:.7;transition:opacity .2s}
+.gal-thumb span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gal-thumb:hover img,.gal-thumb[aria-pressed="true"] img{opacity:1}
+.gal-thumb[aria-pressed="true"]{border-color:var(--hot);background:rgba(0,0,0,.25);color:var(--ivory)}
+/* Lightbox for the enlarged screenshot */
+.lightbox{max-width:min(1100px,94vw);width:100%;padding:0;border:0;border-radius:14px;background:#000;color:var(--ivory);overflow:visible}
+.lightbox::backdrop{background:rgba(10,4,7,.85)}
+.lightbox img{display:block;width:100%;height:auto;border-radius:14px}
+.lb-cap{margin:10px 4px 0;font:13px/1.4 var(--font-mono);color:var(--rose);text-align:center}
+.lb-btn{position:absolute;width:44px;height:44px;border-radius:50%;background:var(--ivory);color:var(--ink);font-size:20px;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.lb-btn:hover{background:var(--hot)}
+.lb-close{top:-14px;right:-14px}
+.lb-prev{left:-14px;top:50%;margin-top:-22px}
+.lb-next{right:-14px;top:50%;margin-top:-22px}
 
 /* Terminal */
 .term{flex:1;display:flex;flex-direction:column;border-radius:12px;background:#140910;border:1px solid rgba(228,170,185,.3);overflow:hidden;margin-top:4px}
@@ -624,11 +632,10 @@ html:not(.js) .curtain{display:none}
 .pv{position:absolute;inset:0;padding:16px;display:flex;flex-direction:column;opacity:0;transition:opacity .15s}
 .pv.on{opacity:1}
 .pv-t{font:11px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
-.pv-bars,.pv-eq{flex:1;display:flex;align-items:flex-end;gap:5px}
+.pv-bars{flex:1;display:flex;align-items:flex-end;gap:5px}
 .pv-bars i{flex:1;border-radius:3px 3px 0 0;background:var(--rose)}
 .pv-bars i:nth-child(3n){background:var(--hot)}
-.pv-eq i{flex:1;height:100%;border-radius:2px;background:var(--rose);transform-origin:bottom;animation:eqv var(--du) ease-in-out var(--de) infinite alternate}
-.pv-eq i:nth-child(4n){background:var(--hot)}
+.pv-img{flex:1;width:100%;min-height:0;object-fit:cover;object-position:top left;border-radius:8px}
 .pv svg{flex:1;width:100%}
 .pv-term{flex:1;border-radius:8px;background:#140910;padding:10px;font:11px/1.6 var(--font-mono);color:var(--rose)}
 .pv-term b{color:var(--ivory);font-weight:400}

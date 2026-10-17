@@ -84,7 +84,7 @@ window.SITE = {
     headline: 'What has she built?',
     subhead: 'Tracklist · 4 tracks',
     intro: 'Four projects, from forecasting Mumbai’s air to talking to a database. Open any track for the full story.',
-    note: 'The animated visuals are illustrations of each idea, not real results.',
+    note: 'The animated visuals are illustrations of each idea, not real results. The Spotify screenshots are the real dashboard.',
     blockLabels: { origin: 'Where it started', question: 'The question', data: 'The data', built: 'What I built', learned: 'What I learned', tools: 'Tools' },
     codeLabel: 'GitHub',
     demoLabel: 'Live app',
@@ -155,19 +155,26 @@ window.SITE = {
         id: 'spotify',
         title: 'Spotify Listening Dashboard',
         status: 'Power BI',
-        summary: 'A year of listening, broken down by artist, genre and time of day.',
-        question: 'What do listening habits look like when you line them up by artist, genre and hour?',
-        data: 'More than 12 months of listening data, prepared in Excel.',
+        summary: '14 months of my own listening, rebuilt as a four-page report that looks like the Spotify app.',
+        question: 'What do my listening habits actually look like: when do I listen, who do I come back to, and what do I skip?',
+        data: 'My own Spotify streaming history from December 2024 to February 2026: 10,879 plays across 1,376 artists and 2,571 tracks.',
         built: [
-          'An interactive Power BI dashboard across artist, genre and time-of-day dimensions.',
-          'Custom KPIs and DAX measures that surface peak listening periods and behaviour trends.'
+          'A Power Query pipeline that combines the two Spotify export files, converts timestamps to Indian time, flags any play under 30 seconds as a skip, and adds weekday, hour and part-of-day columns.',
+          'DAX measures for hours, plays, skip rate, peak hour, top artist and top track, RANKX rankings for the top artists and tracks, and new artists discovered each month.',
+          'Four pages styled like the Spotify app: On Repeat (overview), Night Owl (a weekday-by-hour heatmap), Heavy Rotation (artists, loyalty and skips) and Deep Cuts (pick an artist or month).',
+          'A custom dark theme, designed page backgrounds with transparent visuals on top, and sidebar buttons for page navigation.'
         ],
-        learned: 'A dashboard is a story you let people read in their own order, so every visual has to earn its place.',
-        tools: ['Power BI', 'DAX', 'Excel'],
-        code: '',
+        learned: 'The same numbers feel completely different once they look like something people already know. Design is part of the analysis, not decoration on top of it.',
+        tools: ['Power BI', 'Power Query (M)', 'DAX'],
+        code: 'https://github.com/DhritiVichhivora/spotify-listening-dashboard',
         demo: '',
-        visual: 'eq',
-        chips: ['12+ months', 'artist · genre · time of day']
+        visual: 'gallery',
+        gallery: [
+          { src: 'assets/spotify/01-on-repeat.jpg', label: 'On Repeat', alt: 'On Repeat page: listening totals, top tracks, top artists and minutes per month' },
+          { src: 'assets/spotify/02-night-owl.jpg', label: 'Night Owl', alt: 'Night Owl page: weekday by hour heatmap, peak hour and listening by time of day' },
+          { src: 'assets/spotify/03-heavy-rotation.jpg', label: 'Heavy Rotation', alt: 'Heavy Rotation page: treemap of top 20 artists, artist loyalty and most skipped artists' },
+          { src: 'assets/spotify/04-deep-cuts.jpg', label: 'Deep Cuts', alt: 'Deep Cuts page: artist and month pickers with top tracks and minutes by month' }
+        ]
       }
     ],
     /* Made-up examples for the terminal illustration (not real data) */
