@@ -1,0 +1,5 @@
+# Original photos keep their full resolution and are never published
+assets/*-original.*
+
+# Local tooling
+.claude/
