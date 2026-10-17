@@ -8,16 +8,16 @@ A magazine cover that opens into a music player. The site opens on my name, set 
 
 ## Tech
 
-Plain HTML, CSS and JavaScript, written by hand. No frameworks, no build step, no npm packages, no templates. The only outside resources are two Google Fonts.
+Plain HTML, CSS and JavaScript, written by hand. No frameworks, no build step, no npm packages, no templates. The only outside resources are two Google Fonts and GSAP with ScrollTrigger from cdnjs, which power a few optional scroll effects. The site works fully if GSAP fails to load.
 
 ## Features
 
-- **Cover:** my name in huge variable-weight Playfair Display, with letters that rise in, float and wiggle, plus stickers, a rotating badge, cover lines and a barcode
+- **Cover:** a magazine masthead with my name in huge variable-weight Playfair Display. Letters rise in, react to the cursor (weight, lean, push) and wiggle. A soft ink trail follows the mouse, and the cover pins and shrinks into the page as you scroll
 - **Player bar:** shows the section in view as the current track, scroll progress as a 2:30 track, a seekable progress bar, previous/next, play/pause for all ambient animation, and Replay at the end
 - **Mood switcher:** three colour palettes (Burgundy, Midnight, Blush), remembered between visits
 - **Wiggling letters:** every big headline reacts letter by letter on hover or tap
 - **Animated project visuals:** a bar chart, a self-drawing line chart, an equaliser and a typing terminal, all hand-made illustrations (not real results)
-- **Flip cards** for life beyond tech, a polaroid photo stack, copy-email button, custom cursor on desktop
+- **Editorial layout:** page-wipe section transitions, a dark tracklist page with a project preview that follows the cursor, a typographic skills index, flip cards for life beyond tech, copy-email button and a custom cursor on desktop
 - Mobile first, keyboard accessible, and respects reduced-motion settings
 
 ## Editing the content
@@ -50,6 +50,7 @@ Hosted for free on GitHub Pages, published from the `main` branch, root folder. 
 ## Credits
 
 - **Fonts:** Playfair Display and Space Grotesk via Google Fonts (SIL Open Font License)
+- **GSAP and ScrollTrigger** 3.12.5 from cdnjs (GSAP standard licence)
 - **Design inspiration only** from galleries such as SiteInspire, Awwwards, Dribbble and Behance. Nothing was copied.
 - All code, charts, icons and copy are written by me.
 - **AI disclosure:** Built with help from Claude (Anthropic) as an AI coding assistant. The ideas, content and personality are mine.
