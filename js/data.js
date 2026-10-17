@@ -12,14 +12,18 @@ window.SITE = {
     last: 'VICHHIVORA',
     monogram: 'DV',
     tagline: 'Figuring it out. Building it anyway.',
-    issue: 'ISSUE 01 / 2026',
+    issue: 'Issue 01 · 2026',
     playlist: 'Issue 01',
-    sticker: 'data science',
-    badge: 'ISSUE 01 · PORTFOLIO · 2026 · ',
-    coverLines: [
-      'Inside: 4 projects, 1 debate stage, 1 new language.',
-      'Also: an internship that turned into a side project.',
-      'Plus: what I’m exploring next.'
+    folio: ['Issue 01 · 2026', 'Data Science · AI · Analytics', 'Mumbai'],
+    role: 'Data Science student',
+    intro: 'Data Science student at NMIMS Mumbai and Data Science intern at Logixal, summer 2026. Currently exploring AI, machine learning and GenAI.',
+    tocTitle: 'Inside: 4 projects, 1 debate stage, 1 new language.',
+    toc: [
+      { id: 'about', label: 'Who is Dhriti?' },
+      { id: 'work', label: 'Selected work, 4 tracks' },
+      { id: 'skills', label: 'The toolkit' },
+      { id: 'beyond', label: 'Bonus tracks' },
+      { id: 'contact', label: 'Say hi' }
     ],
     photo: 'assets/photo.jpg',
     photoSmall: 'assets/photo-small.jpg',
@@ -59,14 +63,13 @@ window.SITE = {
 
   /* --- 01 About --- */
   about: {
-    label: '01 · About',
+    label: '01 — About',
     headline: 'Who is Dhriti?',
     squiggle: 'Dhriti',
     paragraphs: [
       'I’m a Data Science student who likes finding the story hiding inside a messy dataset. I’m happiest when a question I can’t answer yet turns into something I can build.',
       'Right now I’m exploring AI, machine learning and GenAI, and how to make data look as good as it is useful. Away from the screen you’ll find me swimming laps, playing badminton, or somewhere new, talking to people I’ve just met. I also do MUN, volunteer, take part in hackathons like Smart India Hackathon, and I’m learning German (A1 so far).'
     ],
-    factsHead: ['Question', 'Answer'],
     facts: [
       ['Studies', 'Data Science (integrated B.Tech), NMIMS Mumbai'],
       ['Interned at', 'Logixal (Data Science, summer 2026)'],
@@ -74,18 +77,16 @@ window.SITE = {
       ['Learning', 'German (A1)'],
       ['Never says no to', 'a new place and a new conversation']
     ],
-    factsNote: 'facts found',
     interestsLabel: 'Off the clock',
     interests: ['Swimming', 'Badminton', 'Travel', 'Meeting new people', 'MUN', 'German'],
-    caption: 'figuring it out',
-    stickers: ['curious', 'data nerd']
+    caption: 'Figuring it out.'
   },
 
   /* --- 02 Work: the tracklist --- */
   work: {
-    label: '02 · Work',
+    label: '02 — Selected work',
     headline: 'What has she built?',
-    subhead: 'Tracklist',
+    subhead: 'Tracklist · 4 tracks',
     intro: 'A few experiments where data meets curiosity.',
     note: 'The visuals are illustrations of each idea, not real results.',
     blockLabels: { what: 'What it is', did: 'What I did', learned: 'What I learned', tools: 'Tools' },
@@ -166,7 +167,7 @@ window.SITE = {
 
   /* --- 03 Skills --- */
   skills: {
-    label: '03 · Skills',
+    label: '03 — Toolkit',
     headline: 'What’s in the toolkit?',
     groups: [
       { title: 'Data and analytics', icon: 'chart',
@@ -184,33 +185,32 @@ window.SITE = {
 
   /* --- 04 Beyond tech: flip cards --- */
   beyond: {
-    label: '04 · Bonus tracks',
+    label: '04 — Bonus tracks',
     headline: 'Beyond the code',
-    hint: 'Hover, tap or press Enter to flip a card.',
+    hint: 'Four things I do away from the screen. Hover, tap or press Enter to turn a card over.',
     cards: [
-      { id: 'mun', title: 'MUN', icon: 'mic',
+      { id: 'mun', title: 'MUN',
         line: 'I take part in Model United Nations: research a country’s position, then argue for it out loud in a room full of people.',
         detail: 'Model United Nations' },
-      { id: 'volunteer', title: 'Volunteering', icon: 'heart',
+      { id: 'volunteer', title: 'Volunteering',
         line: 'I mentor children at the Dynamic Sansta NGO. Explaining things simply turns out to be a skill you keep practising.',
         detail: 'Dynamic Sansta NGO · mentoring' },
-      { id: 'communities', title: 'College communities', icon: 'stack',
+      { id: 'communities', title: 'College communities',
         line: 'I’ve served on three college communities, and now lead the tech team at Data Mavericks.',
         timeline: [
           ['2023-2024', 'Cultural executive'],
           ['2024-2025', 'Publicity Executive, IETE'],
           ['2026 – present', 'Head of the Tech department, Data Mavericks']
         ] },
-      { id: 'german', title: 'German A1', icon: 'speech',
+      { id: 'german', title: 'German A1',
         line: 'I’m learning German and have reached A1. The next goal is a whole conversation without switching back to English.',
-        detail: 'Level A1 · still going',
-        sticker: 'Hallo!' }
+        detail: 'Level A1 · still going' }
     ]
   },
 
   /* --- 05 Contact --- */
   contact: {
-    label: '05 · Contact',
+    label: '05 — Contact',
     headline: 'Say hi.',
     line: 'Got an idea, a dataset, or a debate topic? My inbox is open.',
     email: 'dhriti076@gmail.com',
@@ -220,7 +220,7 @@ window.SITE = {
       { label: 'GitHub', href: 'https://github.com/DhritiVichhivora' },
       { label: 'Instagram', href: 'https://www.instagram.com/_dhriti_v/' }
     ],
-    copyLabel: 'Copy',
+    copyLabel: 'Copy email',
     copied: 'Copied',
     replay: 'Replay from the top'
   },
